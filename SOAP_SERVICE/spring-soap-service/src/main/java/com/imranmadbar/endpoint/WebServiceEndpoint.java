@@ -25,6 +25,19 @@ public class WebServiceEndpoint {
 		
 		return response;
 	}
+	
+	
+	@ResponsePayload
+	@PayloadRoot(namespace = "http://imranmadbar2.com", localPart = "ItemRequest")
+	public ItemResponse hiMsg(@RequestPayload ItemRequest request) {
+
+		String outputString = "Hi " + request.getName();
+		ObjectFactory factory = new ObjectFactory();
+		ItemResponse response = factory.createItemResponse();
+		response.setResult(outputString);
+		
+		return response;
+	}
 
 	
 	
