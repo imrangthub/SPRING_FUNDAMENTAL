@@ -1,0 +1,31 @@
+<methodCall>
+    <methodName>GetAccumulators</methodName>
+    <params>
+        <param>
+            <value>
+                <struct>
+                    <member>
+                        <name>originHostName</name>
+                        <value><string>apihub</string></value>
+                    </member>
+                    <member>
+                        <name>originNodeType</name>
+                        <value><string>EXT</string></value>
+                    </member>
+                    <member>
+                        <name>originTimeStamp</name>
+                        <value><dateTime.iso8601>20220426T12:00:00+0000</dateTime.iso8601></value>
+                    </member>
+                    <member>
+                        <name>originTransactionID</name>
+                        <value><string>6882038786807918750</string></value>
+                    </member>
+                    <member>
+                        <name>subscriberNumber</name>
+                        <value><string>8801902798185</string></value>
+                    </member>
+                </struct>
+            </value>
+        </param>
+    </params>
+</methodCall>
