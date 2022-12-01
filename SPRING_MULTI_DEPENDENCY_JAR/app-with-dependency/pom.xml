@@ -35,17 +35,21 @@
 			<scope>test</scope>
 		</dependency>
 
-<!-- 		<dependency>
-			<groupId>com.imranmadbar.app-core</groupId>
-			<artifactId>app-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.imranmadbar.app-core</groupId> <artifactId>app-core</artifactId> 
+			<version>0.0.1-SNAPSHOT</version> </dependency> -->
 
 		<dependency>
 			<groupId>com.imranmadbar.app-shared</groupId>
 			<artifactId>app-shared</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.imranmadbar.app-shared-with-spboot</groupId>
+			<artifactId>app-shared-with-spboot</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 
 
 	</dependencies>

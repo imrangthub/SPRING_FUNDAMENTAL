@@ -4,12 +4,20 @@
 
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.imranmadbar.app-shared</groupId>
-	<artifactId>app-shared</artifactId>
+	<groupId>com.imranmadbar.app-shared-with-spboot</groupId>
+	<artifactId>app-shared-with-spboot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>app-shared</name>
-	<description>Application shared module</description>
+	<name>app-shared-with-spboot</name>
+	<description>Application shared module2</description>
+	
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.0.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -17,6 +25,11 @@
 	</properties>
 
 	<dependencies>
+			<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>com.imranmadbar.app-core</groupId>
 			<artifactId>app-core</artifactId>
