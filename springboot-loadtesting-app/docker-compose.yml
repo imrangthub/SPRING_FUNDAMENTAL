@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  springboot-loadtesting-app:
+    depends_on:
+      - mysqlschema
+    image: imranmadbar/springboot-loadtesting-app
+    container_name: SpringBootLoadTestingApp
+    ports:
+      - "8080:8080"
+    networks:
+      - spring-app-net
+networks:
+  spring-app-net:
+    name: spring-app-net
+    driver: bridge
