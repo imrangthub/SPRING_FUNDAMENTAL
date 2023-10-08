@@ -1,0 +1,26 @@
+
+server:
+  port: ${PORT:8081}
+spring:
+  application:
+    name: cm-simple-soap-call
+---
+spring:
+  config:
+    activate:
+      on-profile: default | dev
+backEndNode:
+  url: http://192.168.1.1:8082/example-path/someEndPoint.exe?action=my-item
+  username: roo-user
+  password: user-pass
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+backEndNode:
+  url: https://madbarsoft.com/some-path/someEndpoint.exe?action=get-data
+  username: root-user
+  password: user-pass

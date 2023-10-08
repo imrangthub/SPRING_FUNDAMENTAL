@@ -1,0 +1,62 @@
+
+ROW-URL:POST:
+https://masbarsoft.com/scripts/soapTicket.exe?action=ticket
+
+
+req-body:
+<soapenv:Envelope
+	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:mes="http://tempuri.org/message/">
+	<soapenv:Header/>
+	<soapenv:Body>
+		<mes:executeScript>
+			<p-sessionKey>2423-random-sessionkey</p-sessionKey>
+			<p-includeName>listCategories</p-includeName>
+			<p-parameters>
+				<item>
+					<field>customer-id</field>
+					<value>432424</value>
+				</item>
+				<item>
+					<field>customer-type</field>
+					<value>general</value>
+				</item>
+			</p-parameters>
+		</mes:executeScript>
+	</soapenv:Body>
+</soapenv:Envelope>
+
+
+
+res-data:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ej="http://tempuri.org/message/">
+    <SOAP-ENV:Header></SOAP-ENV:Header>
+    <SOAP-ENV:Body>
+        <ej:executeScriptResponseStruct>
+            <errorCode>0</errorCode>
+            <output>{"categories": [{"categoryId": 12121,"categoryName": "General","categoryFullName": "simeple value","parentId": "2323","subcategories": []}]}]}</output>
+        </ej:executeScriptResponseStruct>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
+
+service-res-data:
+[
+  {
+    "categoryId": 63232340,
+    "categoryName": "Some data",
+    "categoryFullName": "some data",
+    "parentId": "-1",
+    "subcategories": [
+      {
+        "categoryId": 64232434234,
+        "categoryName": "some data",
+        "categoryFullName": "Other data",
+        "parentId": "323232",
+        "subcategories": []
+      }
+    ]
+  }
+]
+

@@ -1,0 +1,95 @@
+plugins {
+    id "java"
+    id "maven-publish"
+    id 'org.springframework.boot' version '2.5.14'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+group = PROJECT_GROUP
+version = PROJECT_VERSION
+description = PROJECT_DESCRIPTION
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    options.encoding = "UTF-8"
+}
+
+compileTestJava {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    options.encoding = "UTF-8"
+    options.compilerArgs += "-parameters"
+}
+ext{
+    lombokVersion = "1.18.22"
+    springCloudVersion = "2020.0.5"
+}
+repositories {
+    repositories {
+        maven {
+            url REPOSITORY
+            allowInsecureProtocol = true
+            credentials {
+                username = REPOSITORY_USERNAME
+                password = REPOSITORY_PASSWORD
+            }
+        }
+    }
+
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+task afterEclipseImport {
+    dependsOn "genJaxb"
+}
+configurations {
+    jaxb
+}
+
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.0.5'
+
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'com.sun.xml.bind:jaxb-impl:2.3.4'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.2'
+
+
+
+}
+tasks.build.doLast {
+    def jarFilePath = file("${project.buildDir}${File.separator}libs${File.separator}${PROJECT_ARTIFACT}-${PROJECT_VERSION}.jar")
+    println "\u001B[92mBuildJarLocation:\u001B[0m\n" + "-" * (17) + "\n" + jarFilePath
+}
+tasks.jar {
+    enabled = false
+    archiveClassifier.set("")
+}
+wrapper {
+    gradleVersion = GRADLE_VERSION
+    distributionUrl = WRAPPER_ROOT + "/${gradleVersion}/gradle-wrapper-${gradleVersion}-bin.zip"
+}
+springBoot {
+    buildInfo {
+        properties {
+            name = PROJECT_NAME
+        }
+    }
+}
+
+configure(rootProject) {
+    configurations.archives.artifacts.clear()
+}
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}

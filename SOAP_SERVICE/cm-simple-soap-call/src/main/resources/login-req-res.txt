@@ -1,0 +1,29 @@
+
+ROW-URL-POST:
+https://madbarsoft.com/path/simepleEndpoint.exe?action=ticket
+
+req-body:
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mes="http://tempuri.org/message/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mes:login>
+         <!--Optional:-->
+         <username>root-user</username>
+         <!--Optional:-->
+         <password>root-user-pass</password>
+      </mes:login>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+
+res-data:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ej="http://tempuri.org/message/">
+    <SOAP-ENV:Header></SOAP-ENV:Header>
+    <SOAP-ENV:Body>
+        <ej:loginResponseStruct>
+            <errorCode>0</errorCode>
+            <sessionKey>simple-sessionkey-343434</sessionKey>
+        </ej:loginResponseStruct>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

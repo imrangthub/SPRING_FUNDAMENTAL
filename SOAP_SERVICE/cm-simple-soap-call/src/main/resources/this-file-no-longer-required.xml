@@ -1,0 +1,2487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ticketService"
+  targetNamespace="http://www.ejournal.no/ticket"
+  xmlns:tns="http://www.ejournal.no/ticket"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:ej="http://tempuri.org/message/"
+  xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:HTTP="http://schemas.xmlsoap.org/wsdl/http/"
+  xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+  xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
+  xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+
+  <schema targetNamespace="http://tempuri.org/message/"
+    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ej="http://tempuri.org/message/"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="unqualified"
+    attributeFormDefault="unqualified">
+    <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+
+    <complexType name="ValuePairStruct"><!-- ej__ValuePairStruct -->
+          <sequence>
+            <element name="field" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ValuePairStruct::field -->
+            <element name="value" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ValuePairStruct::value -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfValuePairStruct"><!-- ej__ArrayOfValuePairStruct -->
+      <sequence>
+        <element name="item" type="ej:ValuePairStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ArrayOfArrayOfValuePairStruct"><!-- ej__ArrayOfArrayOfValuePairStruct -->
+      <sequence>
+        <element name="item" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ExtraFieldsStruct"><!-- ej__ExtraFieldsStruct -->
+          <sequence>
+            <element name="fieldName" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraFieldsStruct::fieldName -->
+            <element name="displayField" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraFieldsStruct::displayField -->
+            <element name="fieldId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraFieldsStruct::fieldId -->
+            <element name="fieldType" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraFieldsStruct::fieldType -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfExtraFieldsStruct"><!-- ej__ArrayOfExtraFieldsStruct -->
+      <sequence>
+        <element name="item" type="ej:ExtraFieldsStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="CriteriaStruct"><!-- ej__CriteriaStruct -->
+          <sequence>
+            <element name="field" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__CriteriaStruct::field -->
+            <element name="op" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__CriteriaStruct::op -->
+            <element name="value" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__CriteriaStruct::value -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfCriteriaStruct"><!-- ej__ArrayOfCriteriaStruct -->
+      <sequence>
+        <element name="item" type="ej:CriteriaStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ResultStruct"><!-- ej__ResultStruct -->
+          <sequence>
+            <element name="field" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ResultStruct::field -->
+            <element name="value" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ResultStruct::value -->
+            <element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ResultStruct::type -->
+          </sequence>
+    </complexType>
+    <complexType name="TicketInfoShortStruct"><!-- ej__TicketInfoShortStruct -->
+          <sequence>
+            <element name="ticketId" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__TicketInfoShortStruct::ticketId -->
+            <element name="title" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__TicketInfoShortStruct::title -->
+            <element name="customer" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__TicketInfoShortStruct::customer -->
+            <element name="company" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__TicketInfoShortStruct::company -->
+            <element name="ticketUrl" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__TicketInfoShortStruct::ticketUrl -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfTicketInfoShortStruct"><!-- ej__ArrayOfTicketInfoShortStruct -->
+      <sequence>
+        <element name="item" type="ej:TicketInfoShortStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ArrayOfResultStruct"><!-- ej__ArrayOfResultStruct -->
+      <sequence>
+        <element name="item" type="ej:ResultStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ArrayOfArrayOfResultStruct"><!-- ej__ArrayOfArrayOfResultStruct -->
+      <sequence>
+        <element name="item" type="ej:ArrayOfResultStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ExtraFieldStruct"><!-- ej__ExtraFieldStruct -->
+          <sequence>
+            <element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraFieldStruct::id -->
+            <element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraFieldStruct::name -->
+            <element name="datatype" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraFieldStruct::datatype -->
+            <element name="flags" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraFieldStruct::flags -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfExtraFieldStruct"><!-- ej__ArrayOfExtraFieldStruct -->
+      <sequence>
+        <element name="item" type="ej:ExtraFieldStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ExtraTablesStruct"><!-- ej__ExtraTablesStruct -->
+          <sequence>
+            <element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraTablesStruct::id -->
+            <element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraTablesStruct::name -->
+            <element name="fields" type="ej:ArrayOfExtraFieldStruct" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraTablesStruct::fields -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfExtraTablesStruct"><!-- ej__ArrayOfExtraTablesStruct -->
+      <sequence>
+        <element name="item" type="ej:ExtraTablesStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ExtraTableColumnStruct"><!-- ej__ExtraTableColumnStruct -->
+          <sequence>
+            <element name="columnId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraTableColumnStruct::columnId -->
+            <element name="extraFieldId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraTableColumnStruct::extraFieldId -->
+            <element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraTableColumnStruct::name -->
+            <element name="value" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraTableColumnStruct::value -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfExtraTableColumnStruct"><!-- ej__ArrayOfExtraTableColumnStruct -->
+      <sequence>
+        <element name="item" type="ej:ExtraTableColumnStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ExtraTableRowStruct"><!-- ej__ExtraTableRowStruct -->
+          <sequence>
+            <element name="columns" type="ej:ArrayOfExtraTableColumnStruct" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraTableRowStruct::columns -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfExtraTableRowStruct"><!-- ej__ArrayOfExtraTableRowStruct -->
+      <sequence>
+        <element name="item" type="ej:ExtraTableRowStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ExtraTableCriteriaStruct"><!-- ej__ExtraTableCriteriaStruct -->
+          <sequence>
+            <element name="columnId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraTableCriteriaStruct::columnId -->
+            <element name="op" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraTableCriteriaStruct::op -->
+            <element name="value" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraTableCriteriaStruct::value -->
+            <element name="logicalOp" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ExtraTableCriteriaStruct::logicalOp -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfExtraTableCriteriaStruct"><!-- ej__ArrayOfExtraTableCriteriaStruct -->
+      <sequence>
+        <element name="item" type="ej:ExtraTableCriteriaStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ArrayOfString"><!-- ej__ArrayOfString -->
+      <sequence>
+        <element name="item" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ArrayOfInteger"><!-- ej__ArrayOfInteger -->
+      <sequence>
+        <element name="item" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="AttachmentInfoStruct"><!-- ej__AttachmentInfoStruct -->
+          <sequence>
+            <element name="attachmentId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__AttachmentInfoStruct::attachmentId -->
+            <element name="attachmentName" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__AttachmentInfoStruct::attachmentName -->
+            <element name="contentType" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__AttachmentInfoStruct::contentType -->
+            <element name="attachmentKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__AttachmentInfoStruct::attachmentKey -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfAttachmentInfoStruct"><!-- ej__ArrayOfAttachmentInfoStruct -->
+      <sequence>
+        <element name="item" type="ej:AttachmentInfoStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ActiveTicketsStruct"><!-- ej__ActiveTicketsStruct -->
+          <sequence>
+            <element name="ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__ActiveTicketsStruct::ticketId -->
+            <element name="readStatus" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__ActiveTicketsStruct::readStatus -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfActiveTicketsStruct"><!-- ej__ArrayOfActiveTicketsStruct -->
+      <sequence>
+        <element name="item" type="ej:ActiveTicketsStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="NotificationStruct"><!-- ej__NotificationStruct -->
+          <sequence>
+            <element name="type" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__NotificationStruct::type -->
+            <element name="ticketIds" type="ej:ArrayOfInteger" minOccurs="0" maxOccurs="1"/><!-- ej__NotificationStruct::ticketIds -->
+            <element name="message" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__NotificationStruct::message -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfNotificationStruct"><!-- ej__ArrayOfNotificationStruct -->
+      <sequence>
+        <element name="item" type="ej:NotificationStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="CategoryStruct"><!-- ej__CategoryStruct -->
+          <sequence>
+            <element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__CategoryStruct::id -->
+            <element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__CategoryStruct::name -->
+            <element name="parentId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__CategoryStruct::parentId -->
+            <element name="isInternal" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__CategoryStruct::isInternal -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfCategoryStruct"><!-- ej__ArrayOfCategoryStruct -->
+      <sequence>
+        <element name="item" type="ej:CategoryStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="addMessgeHeaderResponseStruct"><!-- ej__addMessgeHeaderResponseStruct -->
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessgeHeaderResponseStruct::_errorCode -->
+          </sequence>
+    </complexType>
+    <complexType name="weekScheduleStruct"><!-- ej__weekScheduleStruct -->
+          <sequence>
+            <element name="mondayStart" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::mondayStart -->
+            <element name="mondayStop" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::mondayStop -->
+            <element name="tuesdayStart" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::tuesdayStart -->
+            <element name="tuesdayStop" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::tuesdayStop -->
+            <element name="wedensdayStart" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::wedensdayStart -->
+            <element name="wedensdayStop" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::wedensdayStop -->
+            <element name="thursdayStart" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::thursdayStart -->
+            <element name="thursdayStop" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::thursdayStop -->
+            <element name="fridayStart" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::fridayStart -->
+            <element name="fridayStop" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::fridayStop -->
+            <element name="saturdayStart" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::saturdayStart -->
+            <element name="saturdayStop" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::saturdayStop -->
+            <element name="sundayStart" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::sundayStart -->
+            <element name="sundayStop" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::sundayStop -->
+            <element name="nonDates" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::nonDates -->
+            <element name="timeZone" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleStruct::timeZone -->
+          </sequence>
+    </complexType>
+    <complexType name="PriorityStruct"><!-- ej__PriorityStruct -->
+          <sequence>
+            <element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__PriorityStruct::id -->
+            <element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__PriorityStruct::name -->
+            <element name="sortOrder" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__PriorityStruct::sortOrder -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfPriorityStruct"><!-- ej__ArrayOfPriorityStruct -->
+      <sequence>
+        <element name="item" type="ej:PriorityStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ReplyTemplateStruct"><!-- ej__ReplyTemplateStruct -->
+          <sequence>
+            <element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__ReplyTemplateStruct::id -->
+            <element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ReplyTemplateStruct::description -->
+            <element name="folder" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__ReplyTemplateStruct::folder -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfReplyTemplateStruct"><!-- ej__ArrayOfReplyTemplateStruct -->
+      <sequence>
+        <element name="item" type="ej:ReplyTemplateStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <complexType name="ReplyTemplateFolderStruct"><!-- ej__ReplyTemplateFolderStruct -->
+          <sequence>
+            <element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__ReplyTemplateFolderStruct::id -->
+            <element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ReplyTemplateFolderStruct::description -->
+            <element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__ReplyTemplateFolderStruct::name -->
+            <element name="parent" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__ReplyTemplateFolderStruct::parent -->
+          </sequence>
+    </complexType>
+    <complexType name="ArrayOfReplyTemplateFolderStruct"><!-- ej__ArrayOfReplyTemplateFolderStruct -->
+      <sequence>
+        <element name="item" type="ej:ReplyTemplateFolderStruct" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="addAttachment">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addAttachment::sessionKey -->
+            <element name="attachmentName" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addAttachment::attachmentName -->
+            <element name="contentType" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addAttachment::contentType -->
+            <element name="data" type="xsd:base64Binary" minOccurs="1" maxOccurs="1"/><!-- ej__addAttachment::data -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="addAttachmentResponseStruct" type="ej:addAttachmentResponseStruct"/>
+    <complexType name="addAttachmentResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addAttachmentResponseStruct::_errorCode -->
+            <element name="attachmentId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addAttachmentResponseStruct::_attachmentId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="addInvoiceEntry">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addInvoiceEntry::sessionKey -->
+            <element name="values" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__addInvoiceEntry::values -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="addInvoiceEntryResponseStruct" type="ej:addInvoiceEntryResponseStruct"/>
+    <complexType name="addInvoiceEntryResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addInvoiceEntryResponseStruct::_errorCode -->
+            <element name="invoiceEntryId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addInvoiceEntryResponseStruct::_invoiceEntryId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="addMessage">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage::sessionKey -->
+            <element name="messageBody" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage::messageBody -->
+            <element name="ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage::ticketId -->
+            <element name="sLevel" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage::sLevel -->
+            <element name="attachmentIds" type="ej:ArrayOfInteger" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage::attachmentIds -->
+            <element name="sendNotification" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__addMessage::sendNotification -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="addMessageResponseStruct" type="ej:addMessageResponseStruct"/>
+    <complexType name="addMessageResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageResponseStruct::_errorCode -->
+            <element name="messageId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageResponseStruct::_messageId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="addMessage2">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage2::sessionKey -->
+            <element name="messageBody" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage2::messageBody -->
+            <element name="replyTemplateId" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage2::replyTemplateId -->
+            <element name="ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage2::ticketId -->
+            <element name="sLevel" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage2::sLevel -->
+            <element name="attachmentIds" type="ej:ArrayOfInteger" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage2::attachmentIds -->
+            <element name="sendNotification" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__addMessage2::sendNotification -->
+            <element name="to" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage2::to -->
+            <element name="cc" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage2::cc -->
+            <element name="bcc" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage2::bcc -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="addMessage2ResponseStruct" type="ej:addMessage2ResponseStruct"/>
+    <complexType name="addMessage2ResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage2ResponseStruct::_errorCode -->
+            <element name="messageId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage2ResponseStruct::_messageId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="addMessage3">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage3::sessionKey -->
+            <element name="messageBody" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage3::messageBody -->
+            <element name="messageHtmlBody" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage3::messageHtmlBody -->
+            <element name="replyTemplateId" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage3::replyTemplateId -->
+            <element name="ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage3::ticketId -->
+            <element name="sLevel" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage3::sLevel -->
+            <element name="attachmentIds" type="ej:ArrayOfInteger" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage3::attachmentIds -->
+            <element name="sendNotification" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__addMessage3::sendNotification -->
+            <element name="to" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage3::to -->
+            <element name="cc" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage3::cc -->
+            <element name="bcc" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage3::bcc -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="addMessage3ResponseStruct" type="ej:addMessage3ResponseStruct"/>
+    <complexType name="addMessage3ResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage3ResponseStruct::_errorCode -->
+            <element name="messageId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage3ResponseStruct::_messageId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="addMessage4">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage4::sessionKey -->
+            <element name="messageBody" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage4::messageBody -->
+            <element name="messageHtmlBody" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage4::messageHtmlBody -->
+            <element name="replyTemplateId" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage4::replyTemplateId -->
+            <element name="ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage4::ticketId -->
+            <element name="sLevel" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage4::sLevel -->
+            <element name="attachmentIds" type="ej:ArrayOfInteger" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage4::attachmentIds -->
+            <element name="sendNotification" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__addMessage4::sendNotification -->
+            <element name="to" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage4::to -->
+            <element name="cc" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage4::cc -->
+            <element name="bcc" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage4::bcc -->
+            <element name="p-values" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage4::p_values -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="addMessage4ResponseStruct" type="ej:addMessage4ResponseStruct"/>
+    <complexType name="addMessage4ResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage4ResponseStruct::_errorCode -->
+            <element name="messageId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage4ResponseStruct::_messageId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="editMessage">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__editMessage::sessionKey -->
+            <element name="messageId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__editMessage::messageId -->
+            <element name="p-values" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__editMessage::p_values -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="editMessageResponseStruct" type="ej:editMessageResponseStruct"/>
+    <complexType name="editMessageResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__editMessageResponseStruct::_errorCode -->
+            <element name="messageId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__editMessageResponseStruct::_messageId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="addMessage5">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5::sessionKey -->
+            <element name="messageBody" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5::messageBody -->
+            <element name="messageHtmlBody" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5::messageHtmlBody -->
+            <element name="replyTemplateId" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5::replyTemplateId -->
+            <element name="ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5::ticketId -->
+            <element name="sLevel" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5::sLevel -->
+            <element name="attachmentIds" type="ej:ArrayOfInteger" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5::attachmentIds -->
+            <element name="sendNotification" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__addMessage5::sendNotification -->
+            <element name="to" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5::to -->
+            <element name="cc" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5::cc -->
+            <element name="bcc" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5::bcc -->
+            <element name="p-values" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5::p_values -->
+            <element name="p-parserVariables" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5::p_parserVariables -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="addMessage5ResponseStruct" type="ej:addMessage5ResponseStruct"/>
+    <complexType name="addMessage5ResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5ResponseStruct::_errorCode -->
+            <element name="messageId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage5ResponseStruct::_messageId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="addMessage6">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6::sessionKey -->
+            <element name="messageBody" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6::messageBody -->
+            <element name="messageHtmlBody" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6::messageHtmlBody -->
+            <element name="replyTemplateId" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6::replyTemplateId -->
+            <element name="ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6::ticketId -->
+            <element name="sLevel" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6::sLevel -->
+            <element name="attachmentIds" type="ej:ArrayOfInteger" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6::attachmentIds -->
+            <element name="sendNotification" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__addMessage6::sendNotification -->
+            <element name="to" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6::to -->
+            <element name="cc" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6::cc -->
+            <element name="bcc" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6::bcc -->
+            <element name="p-values" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6::p_values -->
+            <element name="p-parserVariables" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6::p_parserVariables -->
+            <element name="p-contentIds" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6::p_contentIds -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="addMessage6ResponseStruct" type="ej:addMessage6ResponseStruct"/>
+    <complexType name="addMessage6ResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6ResponseStruct::_errorCode -->
+            <element name="messageId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessage6ResponseStruct::_messageId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="addMessageAsMail">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageAsMail::sessionKey -->
+            <element name="ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageAsMail::ticketId -->
+            <element name="data" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageAsMail::data -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="addMessageAsMailResponseStruct" type="ej:addMessageAsMailResponseStruct"/>
+    <complexType name="addMessageAsMailResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageAsMailResponseStruct::_errorCode -->
+            <element name="ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageAsMailResponseStruct::_ticketId -->
+            <element name="title" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageAsMailResponseStruct::_title -->
+            <element name="owner" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageAsMailResponseStruct::_owner -->
+            <element name="category" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageAsMailResponseStruct::_category -->
+            <element name="priority" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageAsMailResponseStruct::_priority -->
+            <element name="ticketUrl" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageAsMailResponseStruct::_ticketUrl -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="addMessageHeader">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageHeader::sessionKey -->
+            <element name="messageId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageHeader::messageId -->
+            <element name="headers" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageHeader::headers -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="addMessageHeaderResponseStruct" type="ej:addMessageHeaderResponseStruct"/>
+    <complexType name="addMessageHeaderResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageHeaderResponseStruct::_errorCode -->
+            <element name="messageId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__addMessageHeaderResponseStruct::_messageId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="allocUserNotifications">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__allocUserNotifications::sessionKey -->
+            <element name="source" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__allocUserNotifications::source -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="allocUserNotificationsResponseStruct" type="ej:allocUserNotificationsResponseStruct"/>
+    <complexType name="allocUserNotificationsResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__allocUserNotificationsResponseStruct::_errorCode -->
+            <element name="notificationKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__allocUserNotificationsResponseStruct::_notificationKey -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="dbiSendObjects">
+      <complexType>
+          <sequence>
+            <element name="p-sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__dbiSendObjects::p_sessionKey -->
+            <element name="p-agentScheduleId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__dbiSendObjects::p_agentScheduleId -->
+            <element name="p-parameters" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__dbiSendObjects::p_parameters -->
+            <element name="p-objects" type="ej:ArrayOfArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__dbiSendObjects::p_objects -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="dbiSendObjectResponseStruct" type="ej:dbiSendObjectResponseStruct"/>
+    <complexType name="dbiSendObjectResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__dbiSendObjectResponseStruct::_errorCode -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="deleteExtraTableRow">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__deleteExtraTableRow::sessionKey -->
+            <element name="tableId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__deleteExtraTableRow::tableId -->
+            <element name="rowId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__deleteExtraTableRow::rowId -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="deleteExtraTableRowsResponseStruct" type="ej:deleteExtraTableRowsResponseStruct"/>
+    <complexType name="deleteExtraTableRowsResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__deleteExtraTableRowsResponseStruct::_errorCode -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="executeScript">
+      <complexType>
+          <sequence>
+            <element name="p-sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__executeScript::p_sessionKey -->
+            <element name="p-includeName" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__executeScript::p_includeName -->
+            <element name="p-parameters" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__executeScript::p_parameters -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="executeScriptResponseStruct" type="ej:executeScriptResponseStruct"/>
+    <complexType name="executeScriptResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__executeScriptResponseStruct::_errorCode -->
+            <element name="output" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__executeScriptResponseStruct::_output -->
+            <element name="exceptionMessage" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__executeScriptResponseStruct::_exceptionMessage -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="findCustomers">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findCustomers::sessionKey -->
+            <element name="searchCriteria" type="ej:ArrayOfCriteriaStruct" minOccurs="0" maxOccurs="1"/><!-- ej__findCustomers::searchCriteria -->
+            <element name="searchFields" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__findCustomers::searchFields -->
+            <element name="maxRows" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__findCustomers::maxRows -->
+            <element name="orderBy" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findCustomers::orderBy -->
+            <element name="ascending" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__findCustomers::ascending -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="findCustomersResponseStruct" type="ej:findCustomersResponseStruct"/>
+    <complexType name="findCustomersResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__findCustomersResponseStruct::_errorCode -->
+            <element name="searchResult" type="ej:ArrayOfArrayOfResultStruct" minOccurs="0" maxOccurs="1"/><!-- ej__findCustomersResponseStruct::_searchResult -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="findCustomerFromEmail">
+      <complexType>
+          <sequence>
+            <element name="username" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findCustomerFromEmail::username -->
+            <element name="password" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findCustomerFromEmail::password -->
+            <element name="custEmail" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findCustomerFromEmail::custEmail -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="findCustomerFromEmailResponseStruct" type="ej:findCustomerFromEmailResponseStruct"/>
+    <complexType name="findCustomerFromEmailResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__findCustomerFromEmailResponseStruct::_errorCode -->
+            <element name="custUsername" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findCustomerFromEmailResponseStruct::_custUsername -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="findCompanies">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findCompanies::sessionKey -->
+            <element name="searchCriteria" type="ej:ArrayOfCriteriaStruct" minOccurs="0" maxOccurs="1"/><!-- ej__findCompanies::searchCriteria -->
+            <element name="searchFields" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__findCompanies::searchFields -->
+            <element name="maxRows" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__findCompanies::maxRows -->
+            <element name="orderBy" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findCompanies::orderBy -->
+            <element name="ascending" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__findCompanies::ascending -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="findCompaniesResponseStruct" type="ej:findCompaniesResponseStruct"/>
+    <complexType name="findCompaniesResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__findCompaniesResponseStruct::_errorCode -->
+            <element name="searchResult" type="ej:ArrayOfArrayOfResultStruct" minOccurs="0" maxOccurs="1"/><!-- ej__findCompaniesResponseStruct::_searchResult -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="findTickets">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findTickets::sessionKey -->
+            <element name="searchCriteria" type="ej:ArrayOfCriteriaStruct" minOccurs="0" maxOccurs="1"/><!-- ej__findTickets::searchCriteria -->
+            <element name="searchFields" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__findTickets::searchFields -->
+            <element name="maxRows" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__findTickets::maxRows -->
+            <element name="orderBy" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findTickets::orderBy -->
+            <element name="ascending" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__findTickets::ascending -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="findTicketsResponseStruct" type="ej:findTicketsResponseStruct"/>
+    <complexType name="findTicketsResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__findTicketsResponseStruct::_errorCode -->
+            <element name="searchResult" type="ej:ArrayOfArrayOfResultStruct" minOccurs="0" maxOccurs="1"/><!-- ej__findTicketsResponseStruct::_searchResult -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="findTicketsByTitleOrId">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findTicketsByTitleOrId::sessionKey -->
+            <element name="title" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findTicketsByTitleOrId::title -->
+            <element name="maxRows" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__findTicketsByTitleOrId::maxRows -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="findTicketsByTitleOrIdResponseStruct" type="ej:findTicketsByTitleOrIdResponseStruct"/>
+    <complexType name="findTicketsByTitleOrIdResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__findTicketsByTitleOrIdResponseStruct::_errorCode -->
+            <element name="searchResult" type="ej:ArrayOfTicketInfoShortStruct" minOccurs="0" maxOccurs="1"/><!-- ej__findTicketsByTitleOrIdResponseStruct::_searchResult -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="findUser">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findUser::sessionKey -->
+            <element name="field" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findUser::field -->
+            <element name="value" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__findUser::value -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="findUserResponseStruct" type="ej:findUserResponseStruct"/>
+    <complexType name="findUserResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__findUserResponseStruct::_errorCode -->
+            <element name="userId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__findUserResponseStruct::_userId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getActiveTicketsStatus">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getActiveTicketsStatus::sessionKey -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getActiveTicketsStatusResponseStruct" type="ej:getActiveTicketsStatusResponseStruct"/>
+    <complexType name="getActiveTicketsStatusResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getActiveTicketsStatusResponseStruct::_errorCode -->
+            <element name="ticketStatusResult" type="ej:ArrayOfActiveTicketsStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getActiveTicketsStatusResponseStruct::_ticketStatusResult -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getAttachment">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getAttachment::sessionKey -->
+            <element name="attachmentId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getAttachment::attachmentId -->
+            <element name="attachmentKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getAttachment::attachmentKey -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getAttachmentResponseStruct" type="ej:getAttachmentResponseStruct"/>
+    <complexType name="getAttachmentResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getAttachmentResponseStruct::_errorCode -->
+            <element name="attachmentName" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getAttachmentResponseStruct::_attachmentName -->
+            <element name="contentType" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getAttachmentResponseStruct::_contentType -->
+            <element name="data" type="xsd:base64Binary" minOccurs="0" maxOccurs="1"/><!-- ej__getAttachmentResponseStruct::_data -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getCategories">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getCategories::sessionKey -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getCategoriesResponseStruct" type="ej:getCategoriesResponseStruct"/>
+    <complexType name="getCategoriesResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getCategoriesResponseStruct::_errorCode -->
+            <element name="categoryIds" type="ej:ArrayOfCategoryStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getCategoriesResponseStruct::_categoryIds -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getCompany">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getCompany::sessionKey -->
+            <element name="companyId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getCompany::companyId -->
+            <element name="companyFields" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__getCompany::companyFields -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getCompanyResponseStruct" type="ej:getCompanyResponseStruct"/>
+    <complexType name="getCompanyResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getCompanyResponseStruct::_errorCode -->
+            <element name="companyResult" type="ej:ArrayOfResultStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getCompanyResponseStruct::_companyResult -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getCustomer">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getCustomer::sessionKey -->
+            <element name="customerId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getCustomer::customerId -->
+            <element name="customerFields" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__getCustomer::customerFields -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getCustomerResponseStruct" type="ej:getCustomerResponseStruct"/>
+    <complexType name="getCustomerResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getCustomerResponseStruct::_errorCode -->
+            <element name="customerResult" type="ej:ArrayOfResultStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getCustomerResponseStruct::_customerResult -->
+            <element name="customerEmail" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__getCustomerResponseStruct::_customerEmail -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getExtraFields">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getExtraFields::sessionKey -->
+            <element name="domain" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getExtraFields::domain -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getExtraFieldsResponseStruct" type="ej:getExtraFieldsResponseStruct"/>
+    <complexType name="getExtraFieldsResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getExtraFieldsResponseStruct::_errorCode -->
+            <element name="extraFields" type="ej:ArrayOfExtraFieldsStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getExtraFieldsResponseStruct::_extraFields -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getExtraTable">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getExtraTable::sessionKey -->
+            <element name="tableId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getExtraTable::tableId -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getExtraTableResponseStruct" type="ej:getExtraTableResponseStruct"/>
+    <complexType name="getExtraTableResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getExtraTableResponseStruct::_errorCode -->
+            <element name="extraTable" type="ej:ExtraTablesStruct" minOccurs="1" maxOccurs="1"/><!-- ej__getExtraTableResponseStruct::_extraTable -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getExtraTables">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getExtraTables::sessionKey -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getExtraTablesResponseStruct" type="ej:getExtraTablesResponseStruct"/>
+    <complexType name="getExtraTablesResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getExtraTablesResponseStruct::_errorCode -->
+            <element name="extraTables" type="ej:ArrayOfExtraTablesStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getExtraTablesResponseStruct::_extraTables -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getMessage">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getMessage::sessionKey -->
+            <element name="messageId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getMessage::messageId -->
+            <element name="messageFields" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__getMessage::messageFields -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getMessageResponseStruct" type="ej:getMessageResponseStruct"/>
+    <complexType name="getMessageResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getMessageResponseStruct::_errorCode -->
+            <element name="messageResult" type="ej:ArrayOfResultStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getMessageResponseStruct::_messageResult -->
+            <element name="attachmentInfo" type="ej:ArrayOfAttachmentInfoStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getMessageResponseStruct::_attachmentInfo -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getPriorities">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getPriorities::sessionKey -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getPrioritiesResponseStruct" type="ej:getPrioritiesResponseStruct"/>
+    <complexType name="getPrioritiesResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getPrioritiesResponseStruct::_errorCode -->
+            <element name="priorities" type="ej:ArrayOfPriorityStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getPrioritiesResponseStruct::_priorities -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getReplyTemplate">
+      <complexType>
+          <sequence>
+            <element name="p-sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplate::p_sessionKey -->
+            <element name="p-replyTemplateId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplate::p_replyTemplateId -->
+            <element name="p-languageId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplate::p_languageId -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getReplyTemplateResponseStruct" type="ej:getReplyTemplateResponseStruct"/>
+    <complexType name="getReplyTemplateResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplateResponseStruct::_errorCode -->
+            <element name="subject" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplateResponseStruct::_subject -->
+            <element name="headers" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplateResponseStruct::_headers -->
+            <element name="plainBody" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplateResponseStruct::_plainBody -->
+            <element name="htmlBody" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplateResponseStruct::_htmlBody -->
+            <element name="hasPlainBody" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__getReplyTemplateResponseStruct::_hasPlainBody -->
+            <element name="hasHtmlBody" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__getReplyTemplateResponseStruct::_hasHtmlBody -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getReplyTemplates">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplates::sessionKey -->
+            <element name="folderId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplates::folderId -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getReplyTemplatesResponseStruct" type="ej:getReplyTemplatesResponseStruct"/>
+    <complexType name="getReplyTemplatesResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplatesResponseStruct::_errorCode -->
+            <element name="replyTemplates" type="ej:ArrayOfReplyTemplateStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplatesResponseStruct::_replyTemplates -->
+            <element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplatesResponseStruct::_description -->
+            <element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplatesResponseStruct::_name -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getReplyTemplateFolders">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplateFolders::sessionKey -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getReplyTemplateFoldersResponseStruct" type="ej:getReplyTemplateFoldersResponseStruct"/>
+    <complexType name="getReplyTemplateFoldersResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplateFoldersResponseStruct::_errorCode -->
+            <element name="replyTemplateFolders" type="ej:ArrayOfReplyTemplateFolderStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getReplyTemplateFoldersResponseStruct::_replyTemplateFolders -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getTicket">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getTicket::sessionKey -->
+            <element name="ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getTicket::ticketId -->
+            <element name="ticketFields" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__getTicket::ticketFields -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getTicketResponseStruct" type="ej:getTicketResponseStruct"/>
+    <complexType name="getTicketResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getTicketResponseStruct::_errorCode -->
+            <element name="ticketResult" type="ej:ArrayOfResultStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getTicketResponseStruct::_ticketResult -->
+            <element name="messageIds" type="ej:ArrayOfInteger" minOccurs="0" maxOccurs="1"/><!-- ej__getTicketResponseStruct::_messageIds -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getUser">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getUser::sessionKey -->
+            <element name="fields" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__getUser::fields -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getUserResponseStruct" type="ej:getUserResponseStruct"/>
+    <complexType name="getUserResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getUserResponseStruct::_errorCode -->
+            <element name="userResult" type="ej:ArrayOfResultStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getUserResponseStruct::_userResult -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="getUserNotifications">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getUserNotifications::sessionKey -->
+            <element name="notificationKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__getUserNotifications::notificationKey -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="getUserNotificationsResponseStruct" type="ej:getUserNotificationsResponseStruct"/>
+    <complexType name="getUserNotificationsResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__getUserNotificationsResponseStruct::_errorCode -->
+            <element name="userNotifications" type="ej:ArrayOfNotificationStruct" minOccurs="0" maxOccurs="1"/><!-- ej__getUserNotificationsResponseStruct::_userNotifications -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="insertIntoExtraTable">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__insertIntoExtraTable::sessionKey -->
+            <element name="tableId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__insertIntoExtraTable::tableId -->
+            <element name="rowId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__insertIntoExtraTable::rowId -->
+            <element name="columnValues" type="ej:ArrayOfValuePairStruct" minOccurs="1" maxOccurs="1"/><!-- ej__insertIntoExtraTable::columnValues -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="insertIntoExtraTableResponseStruct" type="ej:insertIntoExtraTableResponseStruct"/>
+    <complexType name="insertIntoExtraTableResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__insertIntoExtraTableResponseStruct::_errorCode -->
+            <element name="rowId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__insertIntoExtraTableResponseStruct::_rowId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="login">
+      <complexType>
+          <sequence>
+            <element name="username" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__login::username -->
+            <element name="password" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__login::password -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="loginResponseStruct" type="ej:loginResponseStruct"/>
+    <complexType name="loginResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__loginResponseStruct::_errorCode -->
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__loginResponseStruct::_sessionKey -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="loginAsUser">
+      <complexType>
+          <sequence>
+            <element name="userId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__loginAsUser::userId -->
+            <element name="username" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__loginAsUser::username -->
+            <element name="password" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__loginAsUser::password -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="loginAsUserResponseStruct" type="ej:loginAsUserResponseStruct"/>
+    <complexType name="loginAsUserResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__loginAsUserResponseStruct::_errorCode -->
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__loginAsUserResponseStruct::_sessionKey -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="logout">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__logout::sessionKey -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="logoutResponseStruct" type="ej:logoutResponseStruct"/>
+    <complexType name="logoutResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__logoutResponseStruct::_errorCode -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="newCompany">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__newCompany::sessionKey -->
+            <element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__newCompany::name -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="newCompanyResponseStruct" type="ej:newCompanyResponseStruct"/>
+    <complexType name="newCompanyResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newCompanyResponseStruct::_errorCode -->
+            <element name="companyId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newCompanyResponseStruct::_companyId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="newCustomer">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__newCustomer::sessionKey -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="newCustomerResponseStruct" type="ej:newCustomerResponseStruct"/>
+    <complexType name="newCustomerResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newCustomerResponseStruct::_errorCode -->
+            <element name="customerId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newCustomerResponseStruct::_customerId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="newTicket">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket::sessionKey -->
+            <element name="title" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket::title -->
+            <element name="sLevel" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket::sLevel -->
+            <element name="categoryId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket::categoryId -->
+            <element name="priorityId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket::priorityId -->
+            <element name="owner" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket::owner -->
+            <element name="customers" type="ej:ArrayOfInteger" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket::customers -->
+            <element name="extraFields" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket::extraFields -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="newTicketResponseStruct" type="ej:newTicketResponseStruct"/>
+    <complexType name="newTicketResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newTicketResponseStruct::_errorCode -->
+            <element name="ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newTicketResponseStruct::_ticketId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="newTicket2">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket2::sessionKey -->
+            <element name="title" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket2::title -->
+            <element name="sLevel" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket2::sLevel -->
+            <element name="categoryId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket2::categoryId -->
+            <element name="priorityId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket2::priorityId -->
+            <element name="owner" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket2::owner -->
+            <element name="customers" type="ej:ArrayOfInteger" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket2::customers -->
+            <element name="extraFields" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket2::extraFields -->
+            <element name="sendNotification" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__newTicket2::sendNotification -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="newTicket2ResponseStruct" type="ej:newTicket2ResponseStruct"/>
+    <complexType name="newTicket2ResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket2ResponseStruct::_errorCode -->
+            <element name="ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__newTicket2ResponseStruct::_ticketId -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="parseText">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__parseText::sessionKey -->
+            <element name="p-text" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__parseText::p_text -->
+            <element name="p-ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__parseText::p_ticketId -->
+            <element name="p-customerId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__parseText::p_customerId -->
+            <element name="p-companyId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__parseText::p_companyId -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="parseTextResponseStruct" type="ej:parseTextResponseStruct"/>
+    <complexType name="parseTextResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__parseTextResponseStruct::_errorCode -->
+            <element name="text" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__parseTextResponseStruct::_text -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="queryExtraTable">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__queryExtraTable::sessionKey -->
+            <element name="tableId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__queryExtraTable::tableId -->
+            <element name="fields" type="ej:ArrayOfString" minOccurs="0" maxOccurs="1"/><!-- ej__queryExtraTable::fields -->
+            <element name="criterias" type="ej:ArrayOfExtraTableCriteriaStruct" minOccurs="0" maxOccurs="1"/><!-- ej__queryExtraTable::criterias -->
+            <element name="orderByField" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__queryExtraTable::orderByField -->
+            <element name="maxEntries" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__queryExtraTable::maxEntries -->
+            <element name="ascending" type="xsd:boolean" minOccurs="1" maxOccurs="1"/><!-- ej__queryExtraTable::ascending -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="queryExtraTableResponseStruct" type="ej:queryExtraTableResponseStruct"/>
+    <complexType name="queryExtraTableResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__queryExtraTableResponseStruct::_errorCode -->
+            <element name="rows" type="ej:ArrayOfExtraTableRowStruct" minOccurs="0" maxOccurs="1"/><!-- ej__queryExtraTableResponseStruct::_rows -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="setCompany">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__setCompany::sessionKey -->
+            <element name="companyId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__setCompany::companyId -->
+            <element name="companyValues" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__setCompany::companyValues -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="setCompanyResponseStruct" type="ej:setCompanyResponseStruct"/>
+    <complexType name="setCompanyResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__setCompanyResponseStruct::_errorCode -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="setCustomer">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__setCustomer::sessionKey -->
+            <element name="customerId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__setCustomer::customerId -->
+            <element name="customerValues" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__setCustomer::customerValues -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="setCustomerResponseStruct" type="ej:setCustomerResponseStruct"/>
+    <complexType name="setCustomerResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__setCustomerResponseStruct::_errorCode -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="setInvolvedCustomers">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__setInvolvedCustomers::sessionKey -->
+            <element name="messageId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__setInvolvedCustomers::messageId -->
+            <element name="nameAndAddresses" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__setInvolvedCustomers::nameAndAddresses -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="setInvolvedCustomersResponseStruct" type="ej:setInvolvedCustomersResponseStruct"/>
+    <complexType name="setInvolvedCustomersResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__setInvolvedCustomersResponseStruct::_errorCode -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="setTicket">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__setTicket::sessionKey -->
+            <element name="ticketId" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__setTicket::ticketId -->
+            <element name="ticketValues" type="ej:ArrayOfValuePairStruct" minOccurs="0" maxOccurs="1"/><!-- ej__setTicket::ticketValues -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="setTicketResponseStruct" type="ej:setTicketResponseStruct"/>
+    <complexType name="setTicketResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__setTicketResponseStruct::_errorCode -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="setUserIdleTime">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__setUserIdleTime::sessionKey -->
+            <element name="idleTime" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__setUserIdleTime::idleTime -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="setUserIdleTimeResponseStruct" type="ej:setUserIdleTimeResponseStruct"/>
+    <complexType name="setUserIdleTimeResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__setUserIdleTimeResponseStruct::_errorCode -->
+          </sequence>
+    </complexType>
+    <!-- operation request element -->
+    <element name="weekScheduleAddTimeSpan">
+      <complexType>
+          <sequence>
+            <element name="sessionKey" type="xsd:string" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleAddTimeSpan::sessionKey -->
+            <element name="p-weekSchedule" type="ej:weekScheduleStruct" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleAddTimeSpan::p_weekSchedule -->
+            <element name="p-from" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleAddTimeSpan::p_from -->
+            <element name="p-alertTimeInMinutes" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleAddTimeSpan::p_alertTimeInMinutes -->
+          </sequence>
+      </complexType>
+    </element>
+    <!-- operation response element and type -->
+    <element name="weekScheduleAddTimeSpanResponseStruct" type="ej:weekScheduleAddTimeSpanResponseStruct"/>
+    <complexType name="weekScheduleAddTimeSpanResponseStruct">
+          <sequence>
+            <element name="errorCode" type="xsd:integer" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleAddTimeSpanResponseStruct::_errorCode -->
+            <element name="difference" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/><!-- ej__weekScheduleAddTimeSpanResponseStruct::_difference -->
+          </sequence>
+    </complexType>
+  </schema>
+
+</types>
+
+<message name="addAttachment">
+  <part name="Body" element="ej:addAttachment"/><!-- ej__addAttachment::ej__addAttachment -->
+</message>
+
+<message name="addAttachmentResponseStruct">
+  <part name="Body" element="ej:addAttachmentResponseStruct"/><!-- ej__addAttachment::out -->
+</message>
+
+<message name="addInvoiceEntry">
+  <part name="Body" element="ej:addInvoiceEntry"/><!-- ej__addInvoiceEntry::ej__addInvoiceEntry -->
+</message>
+
+<message name="addInvoiceEntryResponseStruct">
+  <part name="Body" element="ej:addInvoiceEntryResponseStruct"/><!-- ej__addInvoiceEntry::out -->
+</message>
+
+<message name="addMessage">
+  <part name="Body" element="ej:addMessage"/><!-- ej__addMessage::ej__addMessage -->
+</message>
+
+<message name="addMessageResponseStruct">
+  <part name="Body" element="ej:addMessageResponseStruct"/><!-- ej__addMessage::out -->
+</message>
+
+<message name="addMessage2">
+  <part name="Body" element="ej:addMessage2"/><!-- ej__addMessage2::ej__addMessage2 -->
+</message>
+
+<message name="addMessage2ResponseStruct">
+  <part name="Body" element="ej:addMessage2ResponseStruct"/><!-- ej__addMessage2::out -->
+</message>
+
+<message name="addMessage3">
+  <part name="Body" element="ej:addMessage3"/><!-- ej__addMessage3::ej__addMessage3 -->
+</message>
+
+<message name="addMessage3ResponseStruct">
+  <part name="Body" element="ej:addMessage3ResponseStruct"/><!-- ej__addMessage3::out -->
+</message>
+
+<message name="addMessage4">
+  <part name="Body" element="ej:addMessage4"/><!-- ej__addMessage4::ej__addMessage4 -->
+</message>
+
+<message name="addMessage4ResponseStruct">
+  <part name="Body" element="ej:addMessage4ResponseStruct"/><!-- ej__addMessage4::out -->
+</message>
+
+<message name="editMessage">
+  <part name="Body" element="ej:editMessage"/><!-- ej__editMessage::ej__editMessage -->
+</message>
+
+<message name="editMessageResponseStruct">
+  <part name="Body" element="ej:editMessageResponseStruct"/><!-- ej__editMessage::out -->
+</message>
+
+<message name="addMessage5">
+  <part name="Body" element="ej:addMessage5"/><!-- ej__addMessage5::ej__addMessage5 -->
+</message>
+
+<message name="addMessage5ResponseStruct">
+  <part name="Body" element="ej:addMessage5ResponseStruct"/><!-- ej__addMessage5::out -->
+</message>
+
+<message name="addMessage6">
+  <part name="Body" element="ej:addMessage6"/><!-- ej__addMessage6::ej__addMessage6 -->
+</message>
+
+<message name="addMessage6ResponseStruct">
+  <part name="Body" element="ej:addMessage6ResponseStruct"/><!-- ej__addMessage6::out -->
+</message>
+
+<message name="addMessageAsMail">
+  <part name="Body" element="ej:addMessageAsMail"/><!-- ej__addMessageAsMail::ej__addMessageAsMail -->
+</message>
+
+<message name="addMessageAsMailResponseStruct">
+  <part name="Body" element="ej:addMessageAsMailResponseStruct"/><!-- ej__addMessageAsMail::out -->
+</message>
+
+<message name="addMessageHeader">
+  <part name="Body" element="ej:addMessageHeader"/><!-- ej__addMessageHeader::ej__addMessageHeader -->
+</message>
+
+<message name="addMessageHeaderResponseStruct">
+  <part name="Body" element="ej:addMessageHeaderResponseStruct"/><!-- ej__addMessageHeader::out -->
+</message>
+
+<message name="allocUserNotifications">
+  <part name="Body" element="ej:allocUserNotifications"/><!-- ej__allocUserNotifications::ej__allocUserNotifications -->
+</message>
+
+<message name="allocUserNotificationsResponseStruct">
+  <part name="Body" element="ej:allocUserNotificationsResponseStruct"/><!-- ej__allocUserNotifications::out -->
+</message>
+
+<message name="dbiSendObjects">
+  <part name="Body" element="ej:dbiSendObjects"/><!-- ej__dbiSendObjects::ej__dbiSendObjects -->
+</message>
+
+<message name="dbiSendObjectResponseStruct">
+  <part name="Body" element="ej:dbiSendObjectResponseStruct"/><!-- ej__dbiSendObjects::p_out -->
+</message>
+
+<message name="deleteExtraTableRow">
+  <part name="Body" element="ej:deleteExtraTableRow"/><!-- ej__deleteExtraTableRow::ej__deleteExtraTableRow -->
+</message>
+
+<message name="deleteExtraTableRowsResponseStruct">
+  <part name="Body" element="ej:deleteExtraTableRowsResponseStruct"/><!-- ej__deleteExtraTableRow::out -->
+</message>
+
+<message name="executeScript">
+  <part name="Body" element="ej:executeScript"/><!-- ej__executeScript::ej__executeScript -->
+</message>
+
+<message name="executeScriptResponseStruct">
+  <part name="Body" element="ej:executeScriptResponseStruct"/><!-- ej__executeScript::p_out -->
+</message>
+
+<message name="findCustomers">
+  <part name="Body" element="ej:findCustomers"/><!-- ej__findCustomers::ej__findCustomers -->
+</message>
+
+<message name="findCustomersResponseStruct">
+  <part name="Body" element="ej:findCustomersResponseStruct"/><!-- ej__findCustomers::out -->
+</message>
+
+<message name="findCustomerFromEmail">
+  <part name="Body" element="ej:findCustomerFromEmail"/><!-- ej__findCustomerFromEmail::ej__findCustomerFromEmail -->
+</message>
+
+<message name="findCustomerFromEmailResponseStruct">
+  <part name="Body" element="ej:findCustomerFromEmailResponseStruct"/><!-- ej__findCustomerFromEmail::out -->
+</message>
+
+<message name="findCompanies">
+  <part name="Body" element="ej:findCompanies"/><!-- ej__findCompanies::ej__findCompanies -->
+</message>
+
+<message name="findCompaniesResponseStruct">
+  <part name="Body" element="ej:findCompaniesResponseStruct"/><!-- ej__findCompanies::out -->
+</message>
+
+<message name="findTickets">
+  <part name="Body" element="ej:findTickets"/><!-- ej__findTickets::ej__findTickets -->
+</message>
+
+<message name="findTicketsResponseStruct">
+  <part name="Body" element="ej:findTicketsResponseStruct"/><!-- ej__findTickets::out -->
+</message>
+
+<message name="findTicketsByTitleOrId">
+  <part name="Body" element="ej:findTicketsByTitleOrId"/><!-- ej__findTicketsByTitleOrId::ej__findTicketsByTitleOrId -->
+</message>
+
+<message name="findTicketsByTitleOrIdResponseStruct">
+  <part name="Body" element="ej:findTicketsByTitleOrIdResponseStruct"/><!-- ej__findTicketsByTitleOrId::out -->
+</message>
+
+<message name="findUser">
+  <part name="Body" element="ej:findUser"/><!-- ej__findUser::ej__findUser -->
+</message>
+
+<message name="findUserResponseStruct">
+  <part name="Body" element="ej:findUserResponseStruct"/><!-- ej__findUser::out -->
+</message>
+
+<message name="getActiveTicketsStatus">
+  <part name="Body" element="ej:getActiveTicketsStatus"/><!-- ej__getActiveTicketsStatus::ej__getActiveTicketsStatus -->
+</message>
+
+<message name="getActiveTicketsStatusResponseStruct">
+  <part name="Body" element="ej:getActiveTicketsStatusResponseStruct"/><!-- ej__getActiveTicketsStatus::out -->
+</message>
+
+<message name="getAttachment">
+  <part name="Body" element="ej:getAttachment"/><!-- ej__getAttachment::ej__getAttachment -->
+</message>
+
+<message name="getAttachmentResponseStruct">
+  <part name="Body" element="ej:getAttachmentResponseStruct"/><!-- ej__getAttachment::out -->
+</message>
+
+<message name="getCategories">
+  <part name="Body" element="ej:getCategories"/><!-- ej__getCategories::ej__getCategories -->
+</message>
+
+<message name="getCategoriesResponseStruct">
+  <part name="Body" element="ej:getCategoriesResponseStruct"/><!-- ej__getCategories::out -->
+</message>
+
+<message name="getCompany">
+  <part name="Body" element="ej:getCompany"/><!-- ej__getCompany::ej__getCompany -->
+</message>
+
+<message name="getCompanyResponseStruct">
+  <part name="Body" element="ej:getCompanyResponseStruct"/><!-- ej__getCompany::out -->
+</message>
+
+<message name="getCustomer">
+  <part name="Body" element="ej:getCustomer"/><!-- ej__getCustomer::ej__getCustomer -->
+</message>
+
+<message name="getCustomerResponseStruct">
+  <part name="Body" element="ej:getCustomerResponseStruct"/><!-- ej__getCustomer::out -->
+</message>
+
+<message name="getExtraFields">
+  <part name="Body" element="ej:getExtraFields"/><!-- ej__getExtraFields::ej__getExtraFields -->
+</message>
+
+<message name="getExtraFieldsResponseStruct">
+  <part name="Body" element="ej:getExtraFieldsResponseStruct"/><!-- ej__getExtraFields::out -->
+</message>
+
+<message name="getExtraTable">
+  <part name="Body" element="ej:getExtraTable"/><!-- ej__getExtraTable::ej__getExtraTable -->
+</message>
+
+<message name="getExtraTableResponseStruct">
+  <part name="Body" element="ej:getExtraTableResponseStruct"/><!-- ej__getExtraTable::out -->
+</message>
+
+<message name="getExtraTables">
+  <part name="Body" element="ej:getExtraTables"/><!-- ej__getExtraTables::ej__getExtraTables -->
+</message>
+
+<message name="getExtraTablesResponseStruct">
+  <part name="Body" element="ej:getExtraTablesResponseStruct"/><!-- ej__getExtraTables::out -->
+</message>
+
+<message name="getMessage">
+  <part name="Body" element="ej:getMessage"/><!-- ej__getMessage::ej__getMessage -->
+</message>
+
+<message name="getMessageResponseStruct">
+  <part name="Body" element="ej:getMessageResponseStruct"/><!-- ej__getMessage::out -->
+</message>
+
+<message name="getPriorities">
+  <part name="Body" element="ej:getPriorities"/><!-- ej__getPriorities::ej__getPriorities -->
+</message>
+
+<message name="getPrioritiesResponseStruct">
+  <part name="Body" element="ej:getPrioritiesResponseStruct"/><!-- ej__getPriorities::out -->
+</message>
+
+<message name="getReplyTemplate">
+  <part name="Body" element="ej:getReplyTemplate"/><!-- ej__getReplyTemplate::ej__getReplyTemplate -->
+</message>
+
+<message name="getReplyTemplateResponseStruct">
+  <part name="Body" element="ej:getReplyTemplateResponseStruct"/><!-- ej__getReplyTemplate::p_out -->
+</message>
+
+<message name="getReplyTemplates">
+  <part name="Body" element="ej:getReplyTemplates"/><!-- ej__getReplyTemplates::ej__getReplyTemplates -->
+</message>
+
+<message name="getReplyTemplatesResponseStruct">
+  <part name="Body" element="ej:getReplyTemplatesResponseStruct"/><!-- ej__getReplyTemplates::out -->
+</message>
+
+<message name="getReplyTemplateFolders">
+  <part name="Body" element="ej:getReplyTemplateFolders"/><!-- ej__getReplyTemplateFolders::ej__getReplyTemplateFolders -->
+</message>
+
+<message name="getReplyTemplateFoldersResponseStruct">
+  <part name="Body" element="ej:getReplyTemplateFoldersResponseStruct"/><!-- ej__getReplyTemplateFolders::out -->
+</message>
+
+<message name="getTicket">
+  <part name="Body" element="ej:getTicket"/><!-- ej__getTicket::ej__getTicket -->
+</message>
+
+<message name="getTicketResponseStruct">
+  <part name="Body" element="ej:getTicketResponseStruct"/><!-- ej__getTicket::out -->
+</message>
+
+<message name="getUser">
+  <part name="Body" element="ej:getUser"/><!-- ej__getUser::ej__getUser -->
+</message>
+
+<message name="getUserResponseStruct">
+  <part name="Body" element="ej:getUserResponseStruct"/><!-- ej__getUser::out -->
+</message>
+
+<message name="getUserNotifications">
+  <part name="Body" element="ej:getUserNotifications"/><!-- ej__getUserNotifications::ej__getUserNotifications -->
+</message>
+
+<message name="getUserNotificationsResponseStruct">
+  <part name="Body" element="ej:getUserNotificationsResponseStruct"/><!-- ej__getUserNotifications::out -->
+</message>
+
+<message name="insertIntoExtraTable">
+  <part name="Body" element="ej:insertIntoExtraTable"/><!-- ej__insertIntoExtraTable::ej__insertIntoExtraTable -->
+</message>
+
+<message name="insertIntoExtraTableResponseStruct">
+  <part name="Body" element="ej:insertIntoExtraTableResponseStruct"/><!-- ej__insertIntoExtraTable::out -->
+</message>
+
+<message name="login">
+  <part name="Body" element="ej:login"/><!-- ej__login::ej__login -->
+</message>
+
+<message name="loginResponseStruct">
+  <part name="Body" element="ej:loginResponseStruct"/><!-- ej__login::out -->
+</message>
+
+<message name="loginAsUser">
+  <part name="Body" element="ej:loginAsUser"/><!-- ej__loginAsUser::ej__loginAsUser -->
+</message>
+
+<message name="loginAsUserResponseStruct">
+  <part name="Body" element="ej:loginAsUserResponseStruct"/><!-- ej__loginAsUser::out -->
+</message>
+
+<message name="logout">
+  <part name="Body" element="ej:logout"/><!-- ej__logout::ej__logout -->
+</message>
+
+<message name="logoutResponseStruct">
+  <part name="Body" element="ej:logoutResponseStruct"/><!-- ej__logout::out -->
+</message>
+
+<message name="newCompany">
+  <part name="Body" element="ej:newCompany"/><!-- ej__newCompany::ej__newCompany -->
+</message>
+
+<message name="newCompanyResponseStruct">
+  <part name="Body" element="ej:newCompanyResponseStruct"/><!-- ej__newCompany::out -->
+</message>
+
+<message name="newCustomer">
+  <part name="Body" element="ej:newCustomer"/><!-- ej__newCustomer::ej__newCustomer -->
+</message>
+
+<message name="newCustomerResponseStruct">
+  <part name="Body" element="ej:newCustomerResponseStruct"/><!-- ej__newCustomer::out -->
+</message>
+
+<message name="newTicket">
+  <part name="Body" element="ej:newTicket"/><!-- ej__newTicket::ej__newTicket -->
+</message>
+
+<message name="newTicketResponseStruct">
+  <part name="Body" element="ej:newTicketResponseStruct"/><!-- ej__newTicket::out -->
+</message>
+
+<message name="newTicket2">
+  <part name="Body" element="ej:newTicket2"/><!-- ej__newTicket2::ej__newTicket2 -->
+</message>
+
+<message name="newTicket2ResponseStruct">
+  <part name="Body" element="ej:newTicket2ResponseStruct"/><!-- ej__newTicket2::out -->
+</message>
+
+<message name="parseText">
+  <part name="Body" element="ej:parseText"/><!-- ej__parseText::ej__parseText -->
+</message>
+
+<message name="parseTextResponseStruct">
+  <part name="Body" element="ej:parseTextResponseStruct"/><!-- ej__parseText::out -->
+</message>
+
+<message name="queryExtraTable">
+  <part name="Body" element="ej:queryExtraTable"/><!-- ej__queryExtraTable::ej__queryExtraTable -->
+</message>
+
+<message name="queryExtraTableResponseStruct">
+  <part name="Body" element="ej:queryExtraTableResponseStruct"/><!-- ej__queryExtraTable::out -->
+</message>
+
+<message name="setCompany">
+  <part name="Body" element="ej:setCompany"/><!-- ej__setCompany::ej__setCompany -->
+</message>
+
+<message name="setCompanyResponseStruct">
+  <part name="Body" element="ej:setCompanyResponseStruct"/><!-- ej__setCompany::out -->
+</message>
+
+<message name="setCustomer">
+  <part name="Body" element="ej:setCustomer"/><!-- ej__setCustomer::ej__setCustomer -->
+</message>
+
+<message name="setCustomerResponseStruct">
+  <part name="Body" element="ej:setCustomerResponseStruct"/><!-- ej__setCustomer::out -->
+</message>
+
+<message name="setInvolvedCustomers">
+  <part name="Body" element="ej:setInvolvedCustomers"/><!-- ej__setInvolvedCustomers::ej__setInvolvedCustomers -->
+</message>
+
+<message name="setInvolvedCustomersResponseStruct">
+  <part name="Body" element="ej:setInvolvedCustomersResponseStruct"/><!-- ej__setInvolvedCustomers::out -->
+</message>
+
+<message name="setTicket">
+  <part name="Body" element="ej:setTicket"/><!-- ej__setTicket::ej__setTicket -->
+</message>
+
+<message name="setTicketResponseStruct">
+  <part name="Body" element="ej:setTicketResponseStruct"/><!-- ej__setTicket::out -->
+</message>
+
+<message name="setUserIdleTime">
+  <part name="Body" element="ej:setUserIdleTime"/><!-- ej__setUserIdleTime::ej__setUserIdleTime -->
+</message>
+
+<message name="setUserIdleTimeResponseStruct">
+  <part name="Body" element="ej:setUserIdleTimeResponseStruct"/><!-- ej__setUserIdleTime::out -->
+</message>
+
+<message name="weekScheduleAddTimeSpan">
+  <part name="Body" element="ej:weekScheduleAddTimeSpan"/><!-- ej__weekScheduleAddTimeSpan::ej__weekScheduleAddTimeSpan -->
+</message>
+
+<message name="weekScheduleAddTimeSpanResponseStruct">
+  <part name="Body" element="ej:weekScheduleAddTimeSpanResponseStruct"/><!-- ej__weekScheduleAddTimeSpan::out -->
+</message>
+
+<portType name="ticketServicePortType">
+  <operation name="addAttachment">
+    <documentation>Service definition of function ej__addAttachment</documentation>
+    <input message="tns:addAttachment"/>
+    <output message="tns:addAttachmentResponseStruct"/>
+  </operation>
+  <operation name="addInvoiceEntry">
+    <documentation>Service definition of function ej__addInvoiceEntry</documentation>
+    <input message="tns:addInvoiceEntry"/>
+    <output message="tns:addInvoiceEntryResponseStruct"/>
+  </operation>
+  <operation name="addMessage">
+    <documentation>Service definition of function ej__addMessage</documentation>
+    <input message="tns:addMessage"/>
+    <output message="tns:addMessageResponseStruct"/>
+  </operation>
+  <operation name="addMessage2">
+    <documentation>Service definition of function ej__addMessage2</documentation>
+    <input message="tns:addMessage2"/>
+    <output message="tns:addMessage2ResponseStruct"/>
+  </operation>
+  <operation name="addMessage3">
+    <documentation>Service definition of function ej__addMessage3</documentation>
+    <input message="tns:addMessage3"/>
+    <output message="tns:addMessage3ResponseStruct"/>
+  </operation>
+  <operation name="addMessage4">
+    <documentation>Service definition of function ej__addMessage4</documentation>
+    <input message="tns:addMessage4"/>
+    <output message="tns:addMessage4ResponseStruct"/>
+  </operation>
+  <operation name="editMessage">
+    <documentation>Service definition of function ej__editMessage</documentation>
+    <input message="tns:editMessage"/>
+    <output message="tns:editMessageResponseStruct"/>
+  </operation>
+  <operation name="addMessage5">
+    <documentation>Service definition of function ej__addMessage5</documentation>
+    <input message="tns:addMessage5"/>
+    <output message="tns:addMessage5ResponseStruct"/>
+  </operation>
+  <operation name="addMessage6">
+    <documentation>Service definition of function ej__addMessage6</documentation>
+    <input message="tns:addMessage6"/>
+    <output message="tns:addMessage6ResponseStruct"/>
+  </operation>
+  <operation name="addMessageAsMail">
+    <documentation>Service definition of function ej__addMessageAsMail</documentation>
+    <input message="tns:addMessageAsMail"/>
+    <output message="tns:addMessageAsMailResponseStruct"/>
+  </operation>
+  <operation name="addMessageHeader">
+    <documentation>Service definition of function ej__addMessageHeader</documentation>
+    <input message="tns:addMessageHeader"/>
+    <output message="tns:addMessageHeaderResponseStruct"/>
+  </operation>
+  <operation name="allocUserNotifications">
+    <documentation>Service definition of function ej__allocUserNotifications</documentation>
+    <input message="tns:allocUserNotifications"/>
+    <output message="tns:allocUserNotificationsResponseStruct"/>
+  </operation>
+  <operation name="dbiSendObjects">
+    <documentation>Service definition of function ej__dbiSendObjects</documentation>
+    <input message="tns:dbiSendObjects"/>
+    <output message="tns:dbiSendObjectResponseStruct"/>
+  </operation>
+  <operation name="deleteExtraTableRow">
+    <documentation>Service definition of function ej__deleteExtraTableRow</documentation>
+    <input message="tns:deleteExtraTableRow"/>
+    <output message="tns:deleteExtraTableRowsResponseStruct"/>
+  </operation>
+  <operation name="executeScript">
+    <documentation>Service definition of function ej__executeScript</documentation>
+    <input message="tns:executeScript"/>
+    <output message="tns:executeScriptResponseStruct"/>
+  </operation>
+  <operation name="findCustomers">
+    <documentation>Service definition of function ej__findCustomers</documentation>
+    <input message="tns:findCustomers"/>
+    <output message="tns:findCustomersResponseStruct"/>
+  </operation>
+  <operation name="findCustomerFromEmail">
+    <documentation>Service definition of function ej__findCustomerFromEmail</documentation>
+    <input message="tns:findCustomerFromEmail"/>
+    <output message="tns:findCustomerFromEmailResponseStruct"/>
+  </operation>
+  <operation name="findCompanies">
+    <documentation>Service definition of function ej__findCompanies</documentation>
+    <input message="tns:findCompanies"/>
+    <output message="tns:findCompaniesResponseStruct"/>
+  </operation>
+  <operation name="findTickets">
+    <documentation>Service definition of function ej__findTickets</documentation>
+    <input message="tns:findTickets"/>
+    <output message="tns:findTicketsResponseStruct"/>
+  </operation>
+  <operation name="findTicketsByTitleOrId">
+    <documentation>Service definition of function ej__findTicketsByTitleOrId</documentation>
+    <input message="tns:findTicketsByTitleOrId"/>
+    <output message="tns:findTicketsByTitleOrIdResponseStruct"/>
+  </operation>
+  <operation name="findUser">
+    <documentation>Service definition of function ej__findUser</documentation>
+    <input message="tns:findUser"/>
+    <output message="tns:findUserResponseStruct"/>
+  </operation>
+  <operation name="getActiveTicketsStatus">
+    <documentation>Service definition of function ej__getActiveTicketsStatus</documentation>
+    <input message="tns:getActiveTicketsStatus"/>
+    <output message="tns:getActiveTicketsStatusResponseStruct"/>
+  </operation>
+  <operation name="getAttachment">
+    <documentation>Service definition of function ej__getAttachment</documentation>
+    <input message="tns:getAttachment"/>
+    <output message="tns:getAttachmentResponseStruct"/>
+  </operation>
+  <operation name="getCategories">
+    <documentation>Service definition of function ej__getCategories</documentation>
+    <input message="tns:getCategories"/>
+    <output message="tns:getCategoriesResponseStruct"/>
+  </operation>
+  <operation name="getCompany">
+    <documentation>Service definition of function ej__getCompany</documentation>
+    <input message="tns:getCompany"/>
+    <output message="tns:getCompanyResponseStruct"/>
+  </operation>
+  <operation name="getCustomer">
+    <documentation>Service definition of function ej__getCustomer</documentation>
+    <input message="tns:getCustomer"/>
+    <output message="tns:getCustomerResponseStruct"/>
+  </operation>
+  <operation name="getExtraFields">
+    <documentation>Service definition of function ej__getExtraFields</documentation>
+    <input message="tns:getExtraFields"/>
+    <output message="tns:getExtraFieldsResponseStruct"/>
+  </operation>
+  <operation name="getExtraTable">
+    <documentation>Service definition of function ej__getExtraTable</documentation>
+    <input message="tns:getExtraTable"/>
+    <output message="tns:getExtraTableResponseStruct"/>
+  </operation>
+  <operation name="getExtraTables">
+    <documentation>Service definition of function ej__getExtraTables</documentation>
+    <input message="tns:getExtraTables"/>
+    <output message="tns:getExtraTablesResponseStruct"/>
+  </operation>
+  <operation name="getMessage">
+    <documentation>Service definition of function ej__getMessage</documentation>
+    <input message="tns:getMessage"/>
+    <output message="tns:getMessageResponseStruct"/>
+  </operation>
+  <operation name="getPriorities">
+    <documentation>Service definition of function ej__getPriorities</documentation>
+    <input message="tns:getPriorities"/>
+    <output message="tns:getPrioritiesResponseStruct"/>
+  </operation>
+  <operation name="getReplyTemplate">
+    <documentation>Service definition of function ej__getReplyTemplate</documentation>
+    <input message="tns:getReplyTemplate"/>
+    <output message="tns:getReplyTemplateResponseStruct"/>
+  </operation>
+  <operation name="getReplyTemplates">
+    <documentation>Service definition of function ej__getReplyTemplates</documentation>
+    <input message="tns:getReplyTemplates"/>
+    <output message="tns:getReplyTemplatesResponseStruct"/>
+  </operation>
+  <operation name="getReplyTemplateFolders">
+    <documentation>Service definition of function ej__getReplyTemplateFolders</documentation>
+    <input message="tns:getReplyTemplateFolders"/>
+    <output message="tns:getReplyTemplateFoldersResponseStruct"/>
+  </operation>
+  <operation name="getTicket">
+    <documentation>Service definition of function ej__getTicket</documentation>
+    <input message="tns:getTicket"/>
+    <output message="tns:getTicketResponseStruct"/>
+  </operation>
+  <operation name="getUser">
+    <documentation>Service definition of function ej__getUser</documentation>
+    <input message="tns:getUser"/>
+    <output message="tns:getUserResponseStruct"/>
+  </operation>
+  <operation name="getUserNotifications">
+    <documentation>Service definition of function ej__getUserNotifications</documentation>
+    <input message="tns:getUserNotifications"/>
+    <output message="tns:getUserNotificationsResponseStruct"/>
+  </operation>
+  <operation name="insertIntoExtraTable">
+    <documentation>Service definition of function ej__insertIntoExtraTable</documentation>
+    <input message="tns:insertIntoExtraTable"/>
+    <output message="tns:insertIntoExtraTableResponseStruct"/>
+  </operation>
+  <operation name="login">
+    <documentation>Service definition of function ej__login</documentation>
+    <input message="tns:login"/>
+    <output message="tns:loginResponseStruct"/>
+  </operation>
+  <operation name="loginAsUser">
+    <documentation>Service definition of function ej__loginAsUser</documentation>
+    <input message="tns:loginAsUser"/>
+    <output message="tns:loginAsUserResponseStruct"/>
+  </operation>
+  <operation name="logout">
+    <documentation>Service definition of function ej__logout</documentation>
+    <input message="tns:logout"/>
+    <output message="tns:logoutResponseStruct"/>
+  </operation>
+  <operation name="newCompany">
+    <documentation>Service definition of function ej__newCompany</documentation>
+    <input message="tns:newCompany"/>
+    <output message="tns:newCompanyResponseStruct"/>
+  </operation>
+  <operation name="newCustomer">
+    <documentation>Service definition of function ej__newCustomer</documentation>
+    <input message="tns:newCustomer"/>
+    <output message="tns:newCustomerResponseStruct"/>
+  </operation>
+  <operation name="newTicket">
+    <documentation>Service definition of function ej__newTicket</documentation>
+    <input message="tns:newTicket"/>
+    <output message="tns:newTicketResponseStruct"/>
+  </operation>
+  <operation name="newTicket2">
+    <documentation>Service definition of function ej__newTicket2</documentation>
+    <input message="tns:newTicket2"/>
+    <output message="tns:newTicket2ResponseStruct"/>
+  </operation>
+  <operation name="parseText">
+    <documentation>Service definition of function ej__parseText</documentation>
+    <input message="tns:parseText"/>
+    <output message="tns:parseTextResponseStruct"/>
+  </operation>
+  <operation name="queryExtraTable">
+    <documentation>Service definition of function ej__queryExtraTable</documentation>
+    <input message="tns:queryExtraTable"/>
+    <output message="tns:queryExtraTableResponseStruct"/>
+  </operation>
+  <operation name="setCompany">
+    <documentation>Service definition of function ej__setCompany</documentation>
+    <input message="tns:setCompany"/>
+    <output message="tns:setCompanyResponseStruct"/>
+  </operation>
+  <operation name="setCustomer">
+    <documentation>Service definition of function ej__setCustomer</documentation>
+    <input message="tns:setCustomer"/>
+    <output message="tns:setCustomerResponseStruct"/>
+  </operation>
+  <operation name="setInvolvedCustomers">
+    <documentation>Service definition of function ej__setInvolvedCustomers</documentation>
+    <input message="tns:setInvolvedCustomers"/>
+    <output message="tns:setInvolvedCustomersResponseStruct"/>
+  </operation>
+  <operation name="setTicket">
+    <documentation>Service definition of function ej__setTicket</documentation>
+    <input message="tns:setTicket"/>
+    <output message="tns:setTicketResponseStruct"/>
+  </operation>
+  <operation name="setUserIdleTime">
+    <documentation>Service definition of function ej__setUserIdleTime</documentation>
+    <input message="tns:setUserIdleTime"/>
+    <output message="tns:setUserIdleTimeResponseStruct"/>
+  </operation>
+  <operation name="weekScheduleAddTimeSpan">
+    <documentation>Service definition of function ej__weekScheduleAddTimeSpan</documentation>
+    <input message="tns:weekScheduleAddTimeSpan"/>
+    <output message="tns:weekScheduleAddTimeSpanResponseStruct"/>
+  </operation>
+</portType>
+
+<binding name="ticketService" type="tns:ticketServicePortType">
+  <SOAP:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="addAttachment">
+    <SOAP:operation soapAction="http://tempuri.org/action/addAttachment"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="addInvoiceEntry">
+    <SOAP:operation soapAction="http://tempuri.org/action/addInvoiceEntry"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="addMessage">
+    <SOAP:operation soapAction="http://tempuri.org/action/addMessage"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="addMessage2">
+    <SOAP:operation soapAction="http://tempuri.org/action/addMessage2"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="addMessage3">
+    <SOAP:operation soapAction="http://tempuri.org/action/addMessage3"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="addMessage4">
+    <SOAP:operation soapAction="http://tempuri.org/action/addMessage4"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="editMessage">
+    <SOAP:operation soapAction="http://tempuri.org/action/editMessage"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="addMessage5">
+    <SOAP:operation soapAction="http://tempuri.org/action/addMessage5"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="addMessage6">
+    <SOAP:operation soapAction="http://tempuri.org/action/addMessage6"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="addMessageAsMail">
+    <SOAP:operation soapAction="http://tempuri.org/action/addMessageAsMail"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="addMessageHeader">
+    <SOAP:operation soapAction="http://tempuri.org/action/addMessageHeader"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="allocUserNotifications">
+    <SOAP:operation soapAction="http://tempuri.org/action/allocUserNotifications"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="dbiSendObjects">
+    <SOAP:operation soapAction="http://tempuri.org/action/dbiSendObjects"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="deleteExtraTableRow">
+    <SOAP:operation soapAction="http://tempuri.org/action/deleteExtraTableRows"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="executeScript">
+    <SOAP:operation soapAction="http://tempuri.org/action/executeScript"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="findCustomers">
+    <SOAP:operation soapAction="http://tempuri.org/action/findCustomers"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="findCustomerFromEmail">
+    <SOAP:operation soapAction="http://tempuri.org/action/findCustomerFromEmail"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="findCompanies">
+    <SOAP:operation soapAction="http://tempuri.org/action/findCompanies"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="findTickets">
+    <SOAP:operation soapAction="http://tempuri.org/action/findTicketsByTitleOrId"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="findTicketsByTitleOrId">
+    <SOAP:operation soapAction=""/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="findUser">
+    <SOAP:operation soapAction="http://tempuri.org/action/findUser"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getActiveTicketsStatus">
+    <SOAP:operation soapAction="http://tempuri.org/action/getActiveTicketsStatus"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getAttachment">
+    <SOAP:operation soapAction="http://tempuri.org/action/getAttachment"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getCategories">
+    <SOAP:operation soapAction="http://tempuri.org/action/getCategories"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getCompany">
+    <SOAP:operation soapAction="http://tempuri.org/action/getCompany"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getCustomer">
+    <SOAP:operation soapAction="http://tempuri.org/action/getCustomer"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getExtraFields">
+    <SOAP:operation soapAction="http://tempuri.org/action/getExtraFields"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getExtraTable">
+    <SOAP:operation soapAction="http://tempuri.org/action/getExtraTable"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getExtraTables">
+    <SOAP:operation soapAction="http://tempuri.org/action/getExtraTables"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getMessage">
+    <SOAP:operation soapAction="http://tempuri.org/action/getMessage"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getPriorities">
+    <SOAP:operation soapAction="http://tempuri.org/action/getPriorities"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getReplyTemplate">
+    <SOAP:operation soapAction="http://tempuri.org/action/getReplyTemplate"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getReplyTemplates">
+    <SOAP:operation soapAction="http://tempuri.org/action/getReplyTemplates"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getReplyTemplateFolders">
+    <SOAP:operation soapAction="http://tempuri.org/action/getReplyTemplateFolders"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getTicket">
+    <SOAP:operation soapAction="http://tempuri.org/action/getTicket"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getUser">
+    <SOAP:operation soapAction="http://tempuri.org/action/getUser"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="getUserNotifications">
+    <SOAP:operation soapAction="http://tempuri.org/action/getUserNotifications"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="insertIntoExtraTable">
+    <SOAP:operation soapAction="http://tempuri.org/action/insertIntoExtraTable"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="login">
+    <SOAP:operation soapAction="http://tempuri.org/action/login"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="loginAsUser">
+    <SOAP:operation soapAction="http://tempuri.org/action/loginAsUser"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="logout">
+    <SOAP:operation soapAction="http://tempuri.org/action/logout"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="newCompany">
+    <SOAP:operation soapAction="http://tempuri.org/action/newCompany"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="newCustomer">
+    <SOAP:operation soapAction="http://tempuri.org/action/newCustomer"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="newTicket">
+    <SOAP:operation soapAction="http://tempuri.org/action/newTicket"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="newTicket2">
+    <SOAP:operation soapAction="http://tempuri.org/action/newTicket2"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="parseText">
+    <SOAP:operation soapAction="http://tempuri.org/action/parseText"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="queryExtraTable">
+    <SOAP:operation soapAction="http://tempuri.org/action/queryExtraTable"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="setCompany">
+    <SOAP:operation soapAction="http://tempuri.org/action/setCompany"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="setCustomer">
+    <SOAP:operation soapAction="http://tempuri.org/action/setCustomer"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="setInvolvedCustomers">
+    <SOAP:operation soapAction="http://tempuri.org/action/setInvolvedCustomers"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="setTicket">
+    <SOAP:operation soapAction="http://tempuri.org/action/setTicket"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="setUserIdleTime">
+    <SOAP:operation soapAction="http://tempuri.org/action/setUserIdleTime"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+  <operation name="weekScheduleAddTimeSpan">
+    <SOAP:operation soapAction="http://tempuri.org/action/weekScheduleAddTimeSpan"/>
+    <input>
+          <SOAP:body use="literal" parts="Body"/>
+    </input>
+    <output>
+          <SOAP:body use="literal" parts="Body"/>
+    </output>
+  </operation>
+</binding>
+
+<service name="ticketService">
+  <documentation>gSOAP 2.8.82 generated service definition</documentation>
+  <port name="ticketService" binding="tns:ticketService">
+    <SOAP:address location="https://madbarsoft.com:8445/scripts/someEndpoint.exe?action=ticket"/>
+  </port>
+</service>
+
+</definitions>
+
