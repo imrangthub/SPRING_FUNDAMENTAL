@@ -16,8 +16,9 @@ public class CacheConfig {
 
     @Bean
     public CacheManager cacheManager() {
-        CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager("myCache");
+        CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager("data1");
         caffeineCacheManager.setCaffeine(caffeineCacheBuilder());
+      
         return caffeineCacheManager;
     }
 
@@ -30,4 +31,6 @@ public class CacheConfig {
                // .expireAfterWrite(7, TimeUnit.DAYS)    // 7 days
                 .recordStats();
     }
+    
+    
 }

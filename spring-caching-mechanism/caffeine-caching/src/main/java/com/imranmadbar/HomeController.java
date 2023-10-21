@@ -11,24 +11,43 @@ public class HomeController {
 
 	Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	
+	
 	@Autowired
-	public SimpleService simpleService;
+	public MyService myService;
 	
 
 	
 	
-	@GetMapping(value = "/data")
+	@GetMapping(value = "/get-data")
 	public String getDataFromController() {
 		 System.out.println("Calling......getDataFromController");
 		 
-		return simpleService.getDataFromService();
+		return myService.getDataFromMyService();
 	
-
+	}
+	
+	@GetMapping(value = "/create-data")
+	public String createDataFromController() {
+		 System.out.println("Calling......createDataFromController");
+		 
+		return myService.createDataFromMyService();
 	
 	}
 	
 	
+	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping(value = "/")
 	public String welcomeMsg() {
 		logger.info("Welcome to SimpleWebApplication");

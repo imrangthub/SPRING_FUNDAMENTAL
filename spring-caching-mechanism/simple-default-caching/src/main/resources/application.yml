@@ -2,9 +2,5 @@
 # ===============================
 # = Server Properties
 # ===============================
-server.port= 8181
-
-
-
-
-spring.cache.type=caffeine
+server:
+  port: 8181
