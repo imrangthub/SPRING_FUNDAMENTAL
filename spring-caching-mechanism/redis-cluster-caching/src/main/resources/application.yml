@@ -1,0 +1,19 @@
+
+# ===============================
+# = Server Properties
+# ===============================
+server:
+  port: 8181
+spring:
+  application:
+    name: redis-cluster-caching
+ 
+redis:
+  master:
+    host: localhost
+    port: 6379
+  replicas:
+    - host: localhost
+      port: 6380
+    - host: localhost
+      port: 6381
