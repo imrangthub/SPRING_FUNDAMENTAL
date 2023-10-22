@@ -3,6 +3,9 @@ package com.imranmadbar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +19,8 @@ public class HomeController {
 	@Autowired
 	public MyService myService;
 	
+	@Autowired
+	public RedisTemplate<String, Object> redisTemplate;
 
 	
 	
@@ -34,6 +39,27 @@ public class HomeController {
 		return myService.createDataFromMyService();
 	
 	}
+	
+	
+	@GetMapping(value = "/check-conn")
+	public String checkConn() {
+		 System.out.println("Calling......checkConn");
+
+		
+
+		// redisTemplate.opsForValue().set("data", "My data");
+
+		 redisTemplate.setDefaultSerializer(StringRedisSerializer.UTF_8);
+		 
+			String data1Val = (String) redisTemplate.opsForValue().get("data");
+			
+			System.out.print("data1Val: "+data1Val);
+
+		 
+		return data1Val;
+	
+	}
+	
 	
 	
 	

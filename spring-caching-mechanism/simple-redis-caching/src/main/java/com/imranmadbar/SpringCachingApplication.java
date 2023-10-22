@@ -11,7 +11,7 @@ public class SpringCachingApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringCachingApplication.class, args);
-		System.out.println("Simple MySql CRUD Application Run Successfully Done !");
+		System.out.println("Simple Application Run Successfully Done !");
 	}
 
 }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MyRepository {
 
-	
 	@Cacheable(value = "data1")
 	public String getDataFromMyRepository() {
 		try {
@@ -18,12 +17,11 @@ public class MyRepository {
 			e.printStackTrace();
 		}
 		System.out.println("Calling......getDataFromMyRepository");
-		
+
 		return "getDataFromMyRepository";
 	}
-	
-	
-    @CacheEvict(value = "data1")
+
+	@CacheEvict(value = "data1")
 	public String createDataFromMyRepository() {
 		try {
 			TimeUnit.SECONDS.sleep(1);
@@ -31,14 +29,8 @@ public class MyRepository {
 			e.printStackTrace();
 		}
 		System.out.println("Calling......createDataFromMyRepository");
-		
+
 		return "createDataFromMyRepository";
 	}
 
-	
-
-	
-	
-	
-	
 }
