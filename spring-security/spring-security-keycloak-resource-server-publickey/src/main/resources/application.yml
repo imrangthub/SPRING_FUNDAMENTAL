@@ -1,0 +1,16 @@
+
+# ===============================
+# = Server Properties
+# ===============================
+server:
+  port: 8181
+
+spring:
+  application:
+    name: spring-security-keycloak-resource-server-publickey
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+         issuer-uri: http://172.16.8.132:8080/auth/realms/imran
+        # jwk-set-uri: http://172.16.8.132:8080/auth/realms/imran/protocol/openid-connect/certs
