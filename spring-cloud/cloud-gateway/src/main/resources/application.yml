@@ -1,0 +1,32 @@
+server:
+  port: 7080
+spring:
+  application:
+    name: cloud-gateway
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: false
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7082/eureka/
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
+        
+        
+        

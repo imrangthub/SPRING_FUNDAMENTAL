@@ -1,0 +1,17 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: microservice-two
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7082/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
