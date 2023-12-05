@@ -2,35 +2,24 @@ package com.imranmadbar;
 
 import java.io.IOException;
 
-import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 @Component
-public class ApplicationFilter implements Filter {
-
-	private Logger logger = LoggerFactory.getLogger(ApplicationFilter.class);
+public class ApplicationFilter extends OncePerRequestFilter {
 
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
+
+		System.out.println("ReqUrl" + request.getRequestURI());
+
+		filterChain.doFilter(request, response);
 	}
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		System.out.println("My Application filter work !");
-		chain.doFilter(request, response);
-	}
-
-	@Override
-	public void destroy() {
-	}
 }
