@@ -51,9 +51,9 @@ public class HomeController {
 
 		 redisTemplate.setDefaultSerializer(StringRedisSerializer.UTF_8);
 		 
-			String data1Val = (String) redisTemplate.opsForValue().get("data");
+			String data1Val = (String) redisTemplate.opsForValue().get("data1");
 			
-			System.out.print("data1Val: "+data1Val);
+			System.out.print("data1: "+data1Val);
 
 		 
 		return data1Val;

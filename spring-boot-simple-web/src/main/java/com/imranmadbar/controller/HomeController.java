@@ -15,7 +15,6 @@ public class HomeController {
 
 	@GetMapping(value = "/")
 	public String welcomeMsg() {
-		System.out.println("ForRestUrl: http://localhost:8080/api/1");
 		logger.info("Welcome to SimpleWebApplication");
 		return "Welcome to SimpleWebApplication";
 	}
