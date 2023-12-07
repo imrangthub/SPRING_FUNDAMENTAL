@@ -1,0 +1,15 @@
+
+# ===============================
+# = Server Properties
+# ===============================
+server:
+  port: 8181
+spring:
+  application:
+    name: redis-sentinel-cluster
+  redis:
+    password: BLOpenApi@2021_$
+    sentinel:
+      password: BLOpenApi@2021_$
+      master: mymaster
+      nodes: 172.16.7.161:26379,172.16.8.250:26379,172.16.8.251:26379
