@@ -8,8 +8,29 @@ spring:
   application:
     name: redis-sentinel-cluster
   redis:
+    port: 26379
     password: BLOpenApi@2021_$
     sentinel:
-      password: BLOpenApi@2021_$
       master: mymaster
-      nodes: 172.16.7.161:26379,172.16.8.250:26379,172.16.8.251:26379
+      nodes:
+        - 172.16.7.161
+        - 172.16.8.250
+        - 172.16.8.251
+    lettuce:
+      shutdown-timeout: 200ms  
+      
+cache-config:
+  defaultConfigs:
+  -  cacheName: CACHE4_ONE_DAY       
+     timeToLiveSeconds: 86400
+  -  cacheName: CACHE4_SAVEN_DAY
+     timeToLiveSeconds: 604800
+
+api-mapping:
+  appCacheMap:
+    'redis-sentinel-cluster:get-info': CACHE4_ONE_DAY
+    'redis-sentinel-cluster:get-customer-profiles': CACHE4_SAVEN_DAY       
+     
+      
+      
+              
