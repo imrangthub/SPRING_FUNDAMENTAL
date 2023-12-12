@@ -17,8 +17,9 @@ spring:
         - 172.16.8.250
         - 172.16.8.251
     lettuce:
-      shutdown-timeout: 200ms  
-      
+      shutdown-timeout: 1000ms  
+
+
 cache-config:
   defaultConfigs:
   -  cacheName: CACHE4_ONE_DAY       
