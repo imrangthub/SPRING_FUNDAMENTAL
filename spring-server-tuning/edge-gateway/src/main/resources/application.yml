@@ -1,0 +1,58 @@
+server:
+  port: ${PORT:7081}
+
+spring:
+  application:
+    name: edge-gateway
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: false
+    gateway:
+      httpclient:
+        wiretap: true
+      httpserver:
+        wiretap: true
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+
+ribbon:
+  ReadTimeout: 15000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7082/eureka/
+      
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
+        
+logging:
+  level:
+    reactor:
+      netty: TRACE 
+      channel:
+        FluxReceive: DEBUG
+
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
