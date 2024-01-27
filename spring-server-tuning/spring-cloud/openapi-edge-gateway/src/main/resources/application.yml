@@ -1,0 +1,58 @@
+server:
+  port: ${PORT:7280}
+
+spring:
+  application:
+    name: openapi-edge-gateway
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: false
+    gateway:
+      httpclient:
+        pool:
+          type: fixed
+          maxIdleTime: 5000
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+ribbon:
+  ReadTimeout: 15000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7282/eureka/
+
+      
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
+        
+#logging:
+#  level:
+#    reactor:
+#      netty: DEBUG #TRACE 
+#      channel:
+#        FluxReceive: DEBUG
+
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    

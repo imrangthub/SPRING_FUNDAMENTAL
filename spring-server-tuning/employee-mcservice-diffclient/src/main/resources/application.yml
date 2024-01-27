@@ -1,0 +1,30 @@
+server:
+  port: ${PORT:8282}
+  tomcat:
+    max-threads: 1000
+spring:
+  application:
+    name: employee-mcservice-diffclient
+feign:
+  httpclient:
+    max-connections-per-route: 20
+    max-connections: 20
+  client:
+    config:
+      default:
+        connectTimeout: 100
+        readTimeout: 1000
+        loggerLevel: basic
+        
+intSvc:
+  url: http://localhost:8181
+
+
+
+
+
+
+
+
+
+
