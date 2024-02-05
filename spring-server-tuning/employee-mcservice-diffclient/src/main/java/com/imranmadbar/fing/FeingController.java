@@ -15,17 +15,17 @@ public class FeingController {
 	@Autowired
 	private FeingService reingService;
 
-	@GetMapping(value = "/emp1-fe")
-	public ResponseEntity getEmpEnfo1() {
-		String res = reingService.getEmpEnfo1();
-		logger.info("getEmpEnfo3: " + res);
+	@GetMapping(value = "/fes")
+	public ResponseEntity getEmpEnfo() {
+		String res = reingService.getEmpEnfo();
+		logger.info("getEmpEnfoFes: " + res);
 		return ResponseEntity.status(200).body(res);
 	}
 
-	@GetMapping(value = "/emp3-fe")
-	public ResponseEntity getEmpEnfo3() {
-		String res = reingService.getEmpEnfo3();
-		logger.info("getEmpEnfo3: " + res);
+	@GetMapping(value = "/fes1")
+	public ResponseEntity getEmpEnfo1() {
+		String res = reingService.getEmpEnfo1();
+		logger.info("getEmpEnfo1Fes1: " + res);
 		return ResponseEntity.status(200).body(res);
 	}
 

@@ -1,28 +1,9 @@
 server:
-  port: ${PORT:7280}
+  port: ${PORT:7080}
 
 spring:
   application:
-    name: openapi-edge-gateway
-  main:
-    allow-bean-definition-overriding: true
-  cloud:
-    loadbalancer:
-      retry:
-        enabled: false
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lowerCaseServiceId: true
-ribbon:
-  ReadTimeout: 15000
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:7282/eureka/
-
-      
+    name: edge-gateway
       
 management:
   endpoints:
@@ -34,7 +15,7 @@ management:
 #logging:
 #  level:
 #    reactor:
-#      netty: DEBUG #TRACE 
+#      netty: DEBUG 
 #      channel:
 #        FluxReceive: DEBUG
 

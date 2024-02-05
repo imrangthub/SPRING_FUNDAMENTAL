@@ -4,9 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootSimpleWebApplication {
+public class IntegrationSvcApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootSimpleWebApplication.class, args);
+		SpringApplication.run(IntegrationSvcApplication.class, args);
+
+        
+		System.out.println("IntegrationSvcApplication Run Successfully Done !");
 	}
 }

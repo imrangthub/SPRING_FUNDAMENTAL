@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:8282}
+  port: ${PORT:8181}
   tomcat:
     max-threads: 1000
 spring:
@@ -17,7 +17,7 @@ feign:
         loggerLevel: basic
         
 intSvc:
-  url: http://localhost:8181
+  url: http://localhost:9191
 
 
 

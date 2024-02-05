@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(value = "IntregrationFeingClient",url = "${intSvc.url}")
 public interface IntregrationFeingClient {
 
-	@GetMapping(value = "/emp1")
-	String getEmpEnfo1();
+	@GetMapping(value = "/intsc")
+	String getEmpEnfo();
 
-	@GetMapping(value = "/emp3")
-	String getEmpEnfo3();
+	@GetMapping(value = "/intsc1")
+	String getEmpEnfo1();
 
 }

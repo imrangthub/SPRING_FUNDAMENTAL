@@ -8,5 +8,7 @@ public class SpringBootSimpleWebApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootSimpleWebApplication.class, args);
+
+		System.out.println("SpringBootSimpleWebApplication Run Successfully Done !");
 	}
 }

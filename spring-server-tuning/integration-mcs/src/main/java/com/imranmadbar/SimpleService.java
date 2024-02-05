@@ -7,8 +7,9 @@ import org.springframework.stereotype.Service;
 public class SimpleService {
 	
 	public String getEmpEnfo() {
-		return "Hellow From getEmpEnfo";
+		return "Hellow From IntegrationSvcApplication";
 	}
+	
 	
 	public String getEmpEnfo1() {
 		
@@ -19,7 +20,7 @@ public class SimpleService {
 			e.printStackTrace();
 		}
 		 
-		return "Hellow From getEmpEnfo1";
+		return "Hellow From IntegrationSvcApplication Thread.sleep(200)";
 	}
 
 	
@@ -32,7 +33,7 @@ public class SimpleService {
 			e.printStackTrace();
 		}
 		 
-		return "Hellow From getEmpEnfo2";
+		return "Hellow From IntegrationSvcApplication Thread.sleep(2000)";
 	}
 	
 	
@@ -45,7 +46,7 @@ public class SimpleService {
 			e.printStackTrace();
 		}
 		 
-		return "Hellow From getEmpEnfo3";
+		return "Hellow From IntegrationSvcApplication Thread.sleep(3000)";
 	}
 	
 	
@@ -58,7 +59,7 @@ public class SimpleService {
 			e.printStackTrace();
 		}
 		 
-		return "Hellow From getEmpEnfo4";
+		return "Hellow From IntegrationSvcApplication Thread.sleep(4000)";
 	}
 	
 	
@@ -71,7 +72,7 @@ public class SimpleService {
 			e.printStackTrace();
 		}
 		 
-		return "Hellow From getEmpEnfo5";
+		return "Hellow From IntegrationSvcApplication Thread.sleep(5000)";
 	}
 	
 	public String getEmpEnfox(int sleepData) {
@@ -89,7 +90,7 @@ public class SimpleService {
 			e.printStackTrace();
 		}
 		 
-		return "Hellow From getEmpEnfo1";
+		return "Hellow From IntegrationSvcApplication sleep: "+sleeptime;
 	}
 
 
