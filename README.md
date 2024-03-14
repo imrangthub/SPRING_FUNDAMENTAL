@@ -70,3 +70,34 @@ Simple Soap Response:
                           </ns2:output>
               </SOAP-ENV:Body>
             </SOAP-ENV:Envelope>
+
+
+
+
+
+#springboot-loadtesting-app
+-----------------------------------------------
+
+Set VM Argument for app:
+
+![image](https://github.com/imrangthub/SPRING_FUNDAMENTAL/assets/32607915/d9d19f7f-0677-48a7-9cb4-a58e7f3b2226)
+
+
+Here's what these options mean:
+
+		-Xms512m: Sets the initial heap size to 512 megabytes.
+		-Xmx1024m: Sets the maximum heap size to 1024 megabytes.
+
+
+  So, your app cannot cross allocation memory 900 MB, because you limit the max heap size 1024 MB.
+  If you try to do so you get the java.lang.OutOfMemoryError:
+
+For Waching JVM using VisualVM as:
+
+![image](https://github.com/imrangthub/SPRING_FUNDAMENTAL/assets/32607915/4eb4260a-6954-449a-a10a-2baafee66152)
+
+
+
+
+
+
