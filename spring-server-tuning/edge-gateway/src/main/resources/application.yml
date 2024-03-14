@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:7080}
+  port: ${PORT:7280}
 
 spring:
   application:
@@ -12,12 +12,12 @@ management:
         include: "*"
         
         
-#logging:
-#  level:
-#    reactor:
-#      netty: DEBUG 
-#      channel:
-#        FluxReceive: DEBUG
+logging:
+  level:
+    reactor:
+      netty: DEBUG 
+      channel:
+        FluxReceive: DEBUG
 
                     
                     

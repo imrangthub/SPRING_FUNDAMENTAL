@@ -11,7 +11,7 @@ public class RouteConfig {
 	@Bean
 	public RouteLocator routes(RouteLocatorBuilder builder) {
 		return (RouteLocator) builder.routes()
-				.route("users", t -> t.path("/**").uri("http://localhost:8181/")
+				.route("users", t -> t.path("/**").uri("http://localhost:9191/")
 						)
 
 				.build();
