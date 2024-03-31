@@ -28,7 +28,7 @@ public class WebServiceEndpoint {
 	
 	
 	@ResponsePayload
-	@PayloadRoot(namespace = "http://imranmadbar2.com", localPart = "ItemRequest")
+	@PayloadRoot(namespace = "http://imranmadbar.com", localPart = "ItemRequest2")
 	public ItemResponse hiMsg(@RequestPayload ItemRequest request) {
 
 		String outputString = "Hi " + request.getName();

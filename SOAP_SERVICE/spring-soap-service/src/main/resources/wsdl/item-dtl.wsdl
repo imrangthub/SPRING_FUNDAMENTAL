@@ -63,13 +63,13 @@
 
 
 	<!--Define service -->
-<!-- 	<wsdl:service name="ItemSOAPService">
+	<wsdl:service name="ItemSOAPService">
 		<wsdl:port name="ItemSOAPEndpoint"
 			binding="tns:ItemSOAPEndpointBinding">
 			<soap:address
 				location="http://localhost:8080/imranmadbar/ws/getItems" />
 		</wsdl:port>
-	</wsdl:service> -->
+	</wsdl:service> 
 
 
 </wsdl:definitions>
