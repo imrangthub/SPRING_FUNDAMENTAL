@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:7082}
+  port: ${PORT:7072}
 eureka:
   server:
     enable-self-preservation: false

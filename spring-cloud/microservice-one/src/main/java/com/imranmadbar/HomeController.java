@@ -12,20 +12,27 @@ public class HomeController {
 
 	@GetMapping(value = "/")
 	public String welcomeMsg() {
-		logger.info("Welcome to MicroserviceOneApplication");
-		return "Welcome to MicroserviceOneApplication";
+		logger.info("Welcome to MicroserviceOneApplication Root / url");
+		return "Welcome to MicroserviceOneApplication Root / url";
 	}
 
 	@GetMapping(value = "/home")
 	public String helloMsg() {
-		logger.info("Welcome Home to Spring Boot  MicroserviceOneApplication");
-		return "Welcome Home to Spring Boot  MicroserviceOneApplication";
+		logger.info("This is MicroserviceOneApplication Home");
+		return "This is MicroserviceOneApplication Home";
 	}
 	
-	@GetMapping(value = "/one")
+	@GetMapping(value = "/r1")
 	public String mcOne() {
-		logger.info("Welcome Home to Spring Boot  MicroserviceOneApplication");
-		return "Welcome Home to Spring Boot  MicroserviceOneApplication";
+		logger.info("This is MicroserviceOneApplication Route-One");
+		return "his is MicroserviceOneApplication Route-One";
+	}
+	
+	
+	@GetMapping(value = "/r2")
+	public String mcOne2() {
+		logger.info("This is MicroserviceOneApplication Route-Two");
+		return "This is MicroserviceOneApplication Route-Two";
 	}
 
 }

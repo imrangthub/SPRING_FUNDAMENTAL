@@ -1,32 +1,47 @@
 server:
-  port: 7080
+  port: 7070
 spring:
+  redis:
+    host: localhost
+    port: 6379
   application:
     name: cloud-gateway
   main:
     allow-bean-definition-overriding: true
   cloud:
-    loadbalancer:
-      retry:
-        enabled: false
     gateway:
       discovery:
         locator:
-          enabled: true
+          enabled: false
           lowerCaseServiceId: true
+          
+          
+          
+          
 eureka:
   instance:
     preferIpAddress: true
   client:
     serviceUrl:
-      defaultZone: http://localhost:7082/eureka/
+      defaultZone: http://localhost:7072/eureka/
       
 management:
+  info:
+    env:
+      enabled: true
+  endpoint:
+    gateway:
+      enabled: true
   endpoints:
     web:
       exposure:
         include: "*"
-        
-        
-        
+             
+#logging:
+#  level:
+#    reactor:
+#      netty: DEBUG
+#      channel:
+#        FluxReceive: DEBUG
+              
         
