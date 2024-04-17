@@ -109,5 +109,14 @@ public class HomeController {
 		logger.info("Welcome to IntegrationSvcApplication");
 		return "Welcome to IntegrationSvcApplication";
 	}
+	
+	
+	
+	@GetMapping(value = "/exc1")
+	public String excep1() {
+		logger.info("Throw RuntimeException1");
+		simpleService.thExcept1();
+		return "Throw RuntimeException1";
+	}
 
 }

@@ -92,6 +92,13 @@ public class SimpleService {
 		 
 		return "Hellow From IntegrationSvcApplication sleep: "+sleeptime;
 	}
+	
+	
+	public String thExcept1() {
+		throw new RuntimeException("My Custome Runtime exception.......");
+	}
+	
+	
 
 
 	
