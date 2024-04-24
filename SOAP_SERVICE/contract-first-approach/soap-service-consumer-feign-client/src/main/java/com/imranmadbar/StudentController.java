@@ -4,19 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.imranmadbar.soap.GetStudentDetailsResponse;
+import com.imranmadbar.soapResponse.GetStudentDetailsResponse;
+import com.imranmadbar.soapResponse.StudentDetails;
 
 
 @RestController
 public class StudentController {
 
 	@Autowired
-	private StudentClient studentClient;
+	private StudentService studentService;
 
 	@GetMapping(value = "/get-std")
-	public String getStudentDtl() {
-		GetStudentDetailsResponse res = studentClient.getStudent();
-		return res.getStudentDetails().getName();
+	public StudentDetails getStudentDtl() {
+		return studentService.getStudent().getStudentDetails();
 
 	}
 
