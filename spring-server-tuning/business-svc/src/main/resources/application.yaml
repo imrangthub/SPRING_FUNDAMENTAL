@@ -1,6 +1,7 @@
 server:
-  port: ${PORT:9191}
+  port: 9191
   tomcat:
+    connection-timeout: 2000
     maxConnections: 2
     acceptCount: 1                      # queued tcp connection up by Tomcat before the server starts rejecting new connections. 
     maxKeepAliveRequests: 2
@@ -8,6 +9,9 @@ server:
       max: 2
       minSpare: 1                        # minimum number of connections that the connection pool should always have available and ready for use   
 spring:
+  mvc:
+    async:
+      request-timeout: 1s
   application:
     name: business-svc
 feign:
@@ -17,12 +21,12 @@ feign:
   client:
     config:
       default:
-        connectTimeout: 100
-        readTimeout: 25000
+        connectTimeout: 1000
+        readTimeout: 5000
         loggerLevel: basic
         
 int-url:
-  svc1: http://localhost:8181
+  svc1: http://localhost:9999
 
 management:
   endpoints:

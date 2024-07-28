@@ -22,10 +22,10 @@ public class FeingService {
 	}
 	
 	
-//	public ResponseEntity getEmpEnfo0() {
-//		return ResponseEntity.ok("hello");
-//	}
-//	
+	public ResponseEntity getEmpEnfResEndPoint() {
+		return ResponseEntity.ok("hello");
+	}
+	
 	
 
 	public String getEmpEnfo() {
@@ -54,12 +54,52 @@ public class FeingService {
 		return intregrationFeingClient.getEmpEnfo5();
 	}
 
-	public ResponseEntity getEmpEnfox(@RequestParam(value = "del", required = false) Integer del) {
-		return intregrationFeingClient.getEmpEnfox(del);
+	public ResponseEntity delayx(@RequestParam(value = "del", required = false) Integer del) {
+		return intregrationFeingClient.delayx(del);
+	}
+	
+	
+	public ResponseEntity delayx2(@RequestParam(value = "del", required = false) Integer del) {
+		return intregrationFeingClient.delayx2(del);
+	}
+	
+	public ResponseEntity delayx3Old() {
+		return intregrationFeingClient.delayx3();
+	}
+	
+	public String delayx3() {
+		
+		ResponseEntity data = intregrationFeingClient.delayx3();
+		return data.toString();
+	}
+	
+	
+	public MyDto delayx4() {
+		return intregrationFeingClient.delayx4();
+	}
+	
+
+	public String delayx5() {
+		return intregrationFeingClient.delayx5();
+	}
+	
+	
+	
+
+	public String delayx6() {
+
+		 try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		return "Delay success for 3second";
+
 	}
 
-	public ResponseEntity getEmpEnfoxn(@RequestParam(value = "del", required = false) Integer del) {
-		return intregrationFeingClient.getEmpEnfoxn(del);
-	}
+
+
 
 }

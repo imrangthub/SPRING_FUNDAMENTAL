@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(value = "IntregrationFeingClient", url = "http://localhost:8181")
+@FeignClient(value = "IntregrationFeingClient", url = "http://localhost:9999")
 public interface IntregrationFeingClient {
 	
 	
@@ -31,9 +31,18 @@ public interface IntregrationFeingClient {
 	public String getEmpEnfo5();
 
 	@GetMapping(value = "/intsc1/delayx")
-	public ResponseEntity getEmpEnfox(@RequestParam(value = "del", required = false) Integer del);
+	public ResponseEntity delayx(@RequestParam(value = "del", required = false) Integer del);
 
 	@GetMapping(value = "/intsc1/delayx2")
-	public ResponseEntity getEmpEnfoxn(@RequestParam(value = "del", required = false) Integer del);
+	public ResponseEntity delayx2(@RequestParam(value = "del", required = false) Integer del);
+	
+	@GetMapping(value = "/intsc1/delayx3")
+	public ResponseEntity delayx3();
+	
+	@GetMapping(value = "/intsc1/delayx4")
+	public MyDto delayx4();
+	
+	@GetMapping(value = "/intsc1/delay200")
+	String delayx5();
 
 }

@@ -1,0 +1,29 @@
+server:
+  port: 8282
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+smpp:
+  smsc:
+    ip: 192.168.1.2
+    port: 5009
+    system:
+      id: apihub2
+    max:
+      users: 15
+    consolidation:
+      id: myclientid
+    password: mysupersec
+    queue:
+      capacity: 100
+    connection:
+      waiting:
+        time: 2000
+
+
+
+

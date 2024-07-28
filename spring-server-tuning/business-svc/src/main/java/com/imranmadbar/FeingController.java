@@ -18,7 +18,7 @@ public class FeingController {
 	
 	
 	@GetMapping(value = "/bsvc0")
-	public ResponseEntity<String> getEmpEnfox() {
+	public ResponseEntity<String> bsvc01() {
 	
 		
 		return ResponseEntity.ok(reingService.getEmpEnfo0());
@@ -26,12 +26,12 @@ public class FeingController {
 	
 	
 	
-//	@GetMapping(value = "/bsvc0")
-//	public ResponseEntity getEmpEnfox() {
-//		ResponseEntity res = reingService.getEmpEnfo0();
-//		logger.info("getEmpEnfo1Fes1: " + res);
-//		return res;
-//	}
+	@GetMapping(value = "/bsvc01")
+	public ResponseEntity getEmpEnfox() {
+		ResponseEntity res = reingService.getEmpEnfResEndPoint();
+		logger.info("getEmpEnfo1Fes1: " + res);
+		return null;
+	}
 
 	@GetMapping(value = "/bsvc1")
 	public ResponseEntity getEmpEnfo() {
@@ -74,19 +74,62 @@ public class FeingController {
 		logger.info("getEmpEnfo1Fes5: " + res);
 		return ResponseEntity.status(200).body(res);
 	}
-
+	
+	
 	@GetMapping(value = "/bsvc1/delayx")
-	public ResponseEntity getEmpEnfox(@RequestParam(value = "del", required = false) Integer del) {
-		ResponseEntity res = reingService.getEmpEnfox(del);
+	public ResponseEntity delayx(@RequestParam(value = "del", required = false) Integer del) {
+		ResponseEntity res = reingService.delayx(del);
 		logger.info("getEmpEnfo1Fes1: " + res);
 		return res;
 	}
 
 	@GetMapping(value = "/bsvc1/delayx2")
-	public ResponseEntity getEmpEnfoxn(@RequestParam(value = "del", required = false) Integer del) {
-		ResponseEntity res = reingService.getEmpEnfoxn(del);
+	public ResponseEntity delayx2(@RequestParam(value = "del", required = false) Integer del) {
+		ResponseEntity res = reingService.delayx2(del);
 		logger.info("getEmpEnfo1Fes1: " + res);
 		return res;
 	}
+
+	@GetMapping(value = "/bsvc1/delayx3old")
+	public ResponseEntity delayx3old() {
+		ResponseEntity res = reingService.delayx3Old();
+		logger.info("getEmpEnfo1Fes1: " + res);
+		return res;
+	}
+	
+	
+	@GetMapping(value = "/bsvc1/delayx3")
+	public ResponseEntity delayx3() {
+		String res = reingService.delayx3();
+	//	return reingService.delayx3();
+	//	return res;
+		
+		return ResponseEntity.status(200).body(res);
+	}
+	
+	
+	@GetMapping(value = "/bsvc1/delayx4")
+	public MyDto delayx4() {
+		return reingService.delayx4();
+	}
+	
+	
+
+	@GetMapping(value = "/bsvc1/delayx5")
+	public String delayx5() {
+		return  reingService.delayx5();
+	}
+	
+	
+	@GetMapping(value = "/bsvc1/delayx6")
+	public String delayx6() {
+		return  reingService.delayx6();
+	}
+	
+	
+	
+
+	
+	
 
 }

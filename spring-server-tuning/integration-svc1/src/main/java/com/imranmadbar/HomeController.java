@@ -1,4 +1,4 @@
-package com.imranmadbar;
+ 	package com.imranmadbar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,8 +69,33 @@ public class HomeController {
 		logger.info(res);
 		return res;
 	}
+	
+	
+	@GetMapping(value = "/intsc1/delayx3")
+	public ResponseEntity getEmpEnfox3() {
+		
+		String rs = simpleService.getEmpEnfo1();
 
-	@GetMapping(value = "/intsc1/delayx")
+		return ResponseEntity.status(200).body(rs);
+	}
+	
+	
+	@GetMapping(value = "/intsc1/delayx3old")
+	public ResponseEntity getEmpEnfox3Old() {
+
+		return ResponseEntity.ok("Hello");
+	}
+	
+	@GetMapping(value = "/intsc1/delayx4")
+	public MyDto delayx4() {
+		MyDto res= new MyDto();
+		res.setRs("Hellow from interageraton Custom dto");
+		return res;
+	}
+
+
+
+	@GetMapping(value = "/intsc1/delayx2")
 	public ResponseEntity getEmpEnfox(@RequestParam(value = "del", required = false) Integer del) {
 		String res = simpleService.getEmpEnfox(del);
 		logger.info("getEmpEnfox: " + res);
@@ -79,7 +104,7 @@ public class HomeController {
 
 	
 	
-	@GetMapping(value = "/intsc1/delayx2")
+	@GetMapping(value = "/intsc1/delayx")
 	public ResponseEntity getEmpEnfoxn(@RequestParam(value = "del", required = false) Integer del) {
 		int sleeptime = 100;
 
@@ -93,6 +118,7 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		return null;
+		
 	}
 
 	
