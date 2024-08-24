@@ -98,6 +98,13 @@ For Waching JVM using VisualVM as:
 
 
 
+#GraphQL
+-----------------------------------------------
+
+![image](https://github.com/user-attachments/assets/d6607609-1107-42c5-ab20-a7c18404ec3b)
+
+![image](https://github.com/user-attachments/assets/e2c939f9-7375-4437-92b4-fc733e6bde6c)
+
 
 
 
